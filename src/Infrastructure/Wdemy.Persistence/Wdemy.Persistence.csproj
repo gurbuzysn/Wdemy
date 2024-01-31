@@ -15,4 +15,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Wdemy.Domain\Wdemy.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
