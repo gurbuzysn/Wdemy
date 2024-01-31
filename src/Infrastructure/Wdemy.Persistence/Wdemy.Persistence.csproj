@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\Wdemy.Application\Wdemy.Application.csproj" />
     <ProjectReference Include="..\..\Core\Wdemy.Domain\Wdemy.Domain.csproj" />
   </ItemGroup>
 
