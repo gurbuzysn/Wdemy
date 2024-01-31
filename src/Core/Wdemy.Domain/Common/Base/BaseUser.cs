@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Wdemy.Domain.Enums;
 
 namespace Wdemy.Domain.Common.Base
 {
@@ -13,7 +14,7 @@ namespace Wdemy.Domain.Common.Base
         public string FullName => $"{FirstName} {LastName}";
         public string Email { get; set; } = null!;
         public DateTime DateOfBirth { get; set; }
-        public bool Gender { get; set; }
+        public Gender Gender { get; set; }
         public string? Image { get; set; }
     }
 }
