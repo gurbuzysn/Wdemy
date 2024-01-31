@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Wdemy.Mvc.Data;
+using Wdemy.Persistence.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
