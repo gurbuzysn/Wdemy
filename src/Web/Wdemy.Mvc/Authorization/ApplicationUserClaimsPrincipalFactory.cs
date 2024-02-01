@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using System.Security.Claims;
+using Wdemy.Persistence.Interfaces.Services;
 
 namespace Wdemy.Mvc.Authorization
 {
@@ -21,7 +22,9 @@ namespace Wdemy.Mvc.Authorization
                 return await base.GenerateClaimsAsync(user);
             }
 
-            var userId = await _accountService.GetUserIdAsync(user.Id, userRoles.FirstOrDefault()!);
+            var id = Guid.Parse(user.Id);
+
+            var userId = await _accountService.GetUserIdAsync(id, userRoles.FirstOrDefault()!);
             if (userId != Guid.Empty)
             {
                 var claims = userRoles.Select(role => new Claim(ClaimTypes.Role, role)).ToList();

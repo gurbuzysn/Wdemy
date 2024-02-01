@@ -13,9 +13,9 @@ namespace Wdemy.Persistence.Interfaces.Services
     public interface IAccountService
     {
         Task<bool> AnyAsync(Expression<Func<IdentityUser, bool>> expression);
-        Task<IdentityUser?> FindByIdAsync(string identityId);
+        Task<IdentityUser?> FindByIdAsync(Guid identityId);
         Task<IdentityResult> CreateUserAsync(IdentityUser user, Roles role);
-        Task<IdentityResult> DeleteUserAsync(string identityId);
-        Task<Guid> GetUserIdAsync(string identityId, string role);
+        Task<IdentityResult> DeleteUserAsync(Guid identityId);
+        Task<Guid> GetUserIdAsync(Guid identityId, string role);
     }
 }

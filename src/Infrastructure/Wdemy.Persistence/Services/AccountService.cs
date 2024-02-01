@@ -6,8 +6,10 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using Wdemy.Application.Constant;
 using Wdemy.Domain.Common.Base;
 using Wdemy.Domain.Enums;
+using Wdemy.Persistence.Interfaces.Repository;
 using Wdemy.Persistence.Interfaces.Services;
 
 namespace Wdemy.Persistence.Services
@@ -42,14 +44,14 @@ namespace Wdemy.Persistence.Services
             return await _userManager.AddToRoleAsync(user, role.ToString());
         }
 
-        public Task<IdentityUser?> FindByIdAsync(string identityId)
+        public Task<IdentityUser?> FindByIdAsync(Guid identityId)
         {
-            return _userManager.FindByIdAsync(identityId);
+            return _userManager.FindByIdAsync(identityId.ToString());
         }
 
-        public async Task<IdentityResult> DeleteUserAsync(string identityId)
+        public async Task<IdentityResult> DeleteUserAsync(Guid identityId)
         {
-            var user = await _userManager.FindByIdAsync(identityId);
+            var user = await _userManager.FindByIdAsync(identityId.ToString());
             if (user is null)
             {
                 return IdentityResult.Failed(new IdentityError()
@@ -62,13 +64,11 @@ namespace Wdemy.Persistence.Services
             return await _userManager.DeleteAsync(user);
         }
 
-        public async Task<Guid> GetUserIdAsync(string identityId, string role)
+        public async Task<Guid> GetUserIdAsync(Guid identityId, string role)
         {
             BaseUser? user = role switch
             {
-                "Admin" => await _adminRepository.GetByIdentityIdAsync(identityId),
-                "Student" => await _studentRepository.GetByIdentityIdAsync(identityId),
-                "Trainer" => await _trainerRepository.GetByIdentityIdAsync(identityId),
+                "Admin" => await _adminRepository.GetByIdentityAsync(identityId), 
                 _ => null
             };
 

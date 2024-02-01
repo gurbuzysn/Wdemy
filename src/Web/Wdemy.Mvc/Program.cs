@@ -1,6 +1,11 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Wdemy.Mvc.Authorization;
 using Wdemy.Persistence.Context;
+using Wdemy.Persistence.Interfaces.Repository;
+using Wdemy.Persistence.Interfaces.Services;
+using Wdemy.Persistence.Repositories;
+using Wdemy.Persistence.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,6 +55,11 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.ExpireTimeSpan = TimeSpan.FromMinutes(45);
     options.AccessDeniedPath = new PathString("/Login/AccessDenied");
 });
+
+
+builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<IAdminRepository, AdminRepository>();
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
