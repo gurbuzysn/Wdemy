@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wdemy.Persistence", "src\In
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{0235D92C-4B6C-445B-926F-3176553334F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wdemy.Mvc", "src\Web\Wdemy.Mvc\Wdemy.Mvc.csproj", "{3C278E1E-676B-4F3A-99B4-CCE59B201DE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wdemy.Mvc", "src\Web\Wdemy.Mvc\Wdemy.Mvc.csproj", "{3C278E1E-676B-4F3A-99B4-CCE59B201DE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wdemy.Infrastructure", "src\Infrastructure\Wdemy.Infrastructure\Wdemy.Infrastructure.csproj", "{101278A1-C291-461A-A867-58815CF32109}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{3C278E1E-676B-4F3A-99B4-CCE59B201DE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C278E1E-676B-4F3A-99B4-CCE59B201DE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C278E1E-676B-4F3A-99B4-CCE59B201DE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{101278A1-C291-461A-A867-58815CF32109}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{101278A1-C291-461A-A867-58815CF32109}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{101278A1-C291-461A-A867-58815CF32109}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{101278A1-C291-461A-A867-58815CF32109}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +59,7 @@ Global
 		{E23A7231-3B1B-4AC0-8E2F-F703551A2D58} = {2E29A721-A77E-407F-95E1-2EF65CDEFBE7}
 		{0235D92C-4B6C-445B-926F-3176553334F5} = {AFC41C9D-777B-4CB1-A0FB-6CF3990DB92F}
 		{3C278E1E-676B-4F3A-99B4-CCE59B201DE2} = {0235D92C-4B6C-445B-926F-3176553334F5}
+		{101278A1-C291-461A-A867-58815CF32109} = {2E29A721-A77E-407F-95E1-2EF65CDEFBE7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E89C0DB4-0914-4D5F-9F0D-62735E23D0ED}

@@ -12,12 +12,13 @@ namespace Wdemy.Persistence.Repositories
 {
     public abstract class EfRepository<T> : IRepository<T> where T : BaseEntity
     {
-        private readonly WdemyDbContext _db;
+        protected readonly WdemyDbContext _db;
 
         public EfRepository(WdemyDbContext db)
         {
             _db = db;
         }
+        
         public async Task<T> AddAsync(T entity)
         {
             await _db.AddAsync(entity);

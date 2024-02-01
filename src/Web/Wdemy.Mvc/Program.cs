@@ -9,6 +9,48 @@ builder.Services.AddDbContext<WdemyDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString(WdemyDbContext.ConnectionName));
 });
 
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+{
+    options.User.RequireUniqueEmail = true;
+
+    options.SignIn.RequireConfirmedAccount = false;
+    options.SignIn.RequireConfirmedEmail = false;
+    options.SignIn.RequireConfirmedPhoneNumber = false;
+
+    /* TODO: Login giriþleri kolaylaþtýrmak için þifre gereksinimleri basitleþtirildi. Gereksinimler deðiþtirilecek.
+     options.Password.RequiredLength = 8;
+    options.Password.RequireDigit = true;
+    options.Password.RequireNonAlphanumeric = true;
+    options.Password.RequireLowercase = true;
+    options.Password.RequireUppercase = true;
+    options.Password.RequiredUniqueChars = 1;
+     */
+    options.Password.RequiredLength = 4;
+    options.Password.RequireDigit = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequiredUniqueChars = 0;
+})
+            .AddEntityFrameworkStores<WdemyDbContext>()
+            .AddClaimsPrincipalFactory<ApplicationUserClaimsPrincipalFactory>();
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = new PathString("/Login/Index");
+    options.LogoutPath = new PathString("/Login/SignOut");
+    options.Cookie = new CookieBuilder
+    {
+        Name = "BAExamAppCookie",
+        HttpOnly = false,
+        SameSite = SameSiteMode.Lax,
+        SecurePolicy = CookieSecurePolicy.Always
+    };
+    options.SlidingExpiration = true;
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(45);
+    options.AccessDeniedPath = new PathString("/Login/AccessDenied");
+});
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
