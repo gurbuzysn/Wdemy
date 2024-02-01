@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Wdemy.Mvc.Models;
 
 namespace Wdemy.Mvc.Controllers
 {
@@ -23,6 +24,49 @@ namespace Wdemy.Mvc.Controllers
                 return RedirectToAction("Index", "Home", new { Area = userRole[0].ToString() });
             }
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Index(LoginVM model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var user = await _userManager.FindByEmailAsync(model.Email);
+
+            if (user is null)
+            {
+                //NotifyError("Email veya şifre hatalı");
+                return View(model);
+            }
+
+            var checkPass = await _signInManager.PasswordSignInAsync(user, model.Password, false, false);
+
+            if (!checkPass.Succeeded)
+            {
+                //NotifyError("Email veya şifre hatalı");
+                return View(model);
+            }
+
+            //if (User.IsInRole("Student"))
+            //{
+            //    bool isGraduated = await _studentService.IsGraduatedAsync(user?.Id);
+
+            //    if (isGraduated)
+            //    {
+            //        NotifyError("Mezun olduğunuz için artık sisteme giriş yapamazsınız.Tebrikler!");
+            //        return View(model);
+            //    }
+            //}
+            var userRole = await _userManager.GetRolesAsync(user);
+            if (userRole is null)
+            {
+                //NotifyError("Kullanıcıya ait rol bulunamadı");
+                return View(model);
+            }
+            TempData["Login"] = "ok";
+            Json(new { success = true });
+            return RedirectToAction("Index", "Home", new { Area = userRole[0].ToString() });
         }
     }
 }

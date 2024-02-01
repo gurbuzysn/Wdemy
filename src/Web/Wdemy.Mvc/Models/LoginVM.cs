@@ -12,7 +12,6 @@ namespace Wdemy.Mvc.Models
         [DataType(DataType.Password)]
         public string Password { get; set; } = string.Empty;
 
-        [Display(Name = "Doğrulama Kodu")]
-        public int VerificationCode { get; set; }
+
     }
 }
