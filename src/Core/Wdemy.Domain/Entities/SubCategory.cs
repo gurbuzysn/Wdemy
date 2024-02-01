@@ -8,7 +8,7 @@ namespace Wdemy.Domain.Entities
 {
     public class SubCategory : Category
     {
-        public Guid CategoryId { get; set; }
+       // public Guid CategoryId { get; set; }
 
 
 

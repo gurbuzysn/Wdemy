@@ -8,6 +8,7 @@ namespace Wdemy.Persistence.Context;
 
 public class WdemyDbContext : IdentityDbContext<IdentityUser>
 {
+    public const string ConnectionName = "WdemyApp";
     public WdemyDbContext(DbContextOptions<WdemyDbContext> options) : base(options)
     {
 

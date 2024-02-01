@@ -69,6 +69,7 @@ namespace Wdemy.Persistence.Context
                 }
 
                 await db.Roles.AddAsync(new IdentityRole(roles[i]));
+                await db.SaveChangesAsync();
             }
         }
 
