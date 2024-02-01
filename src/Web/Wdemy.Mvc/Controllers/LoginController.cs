@@ -66,7 +66,13 @@ namespace Wdemy.Mvc.Controllers
             }
             TempData["Login"] = "ok";
             Json(new { success = true });
-            return RedirectToAction("Index", "Home", new { Area = userRole[0].ToString() });
+            return RedirectToAction("Index", "AdminHome", new { Area = userRole[0].ToString() });
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction(nameof(Index));
         }
     }
 }
