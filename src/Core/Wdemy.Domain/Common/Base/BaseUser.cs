@@ -16,5 +16,6 @@ namespace Wdemy.Domain.Common.Base
         public DateTime DateOfBirth { get; set; }
         public Gender Gender { get; set; }
         public string? Image { get; set; }
+        public Guid IdentityId { get; set; }
     }
 }
