@@ -9,8 +9,8 @@ namespace Wdemy.Application.Constant
     public static class AuthorizationConstants
     {
         public const string DEFAULT_ADMIN_USER = "mesutkilic@tureb.com";
-        public const string DEFAULT_TRAINER_USER = "mesutkilic@tureb.com";
-        public const string DEFAULT_STUDENT_USER = "mesutkilic@tureb.com";
+        public const string DEFAULT_TRAINER_USER = "wdemyegitmen@tureb.com";
+        public const string DEFAULT_STUDENT_USER = "wdemykursiyer@tureb.com";
         public const string DEFAULT_PASSWORD = "Tureb123";
 
         public static class Roles
