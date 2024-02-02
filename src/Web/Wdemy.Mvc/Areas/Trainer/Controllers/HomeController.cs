@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Wdemy.Mvc.Areas.Trainer.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : TrainerBaseController
     {
         public IActionResult Index()
         {
