@@ -11,7 +11,5 @@ namespace Wdemy.Mvc.Models
         [Display(Name = "Password")]
         [DataType(DataType.Password)]
         public string Password { get; set; } = string.Empty;
-
-
     }
 }

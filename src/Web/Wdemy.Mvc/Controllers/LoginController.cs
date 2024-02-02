@@ -69,10 +69,57 @@ namespace Wdemy.Mvc.Controllers
             return RedirectToAction("Index", "Home", new { Area = userRole[0].ToString() });
         }
 
+
+        public async Task<IActionResult> Verify(LoginVM model)
+        {
+            var user = await _userManager.FindByEmailAsync(model.Email);
+
+            if (user is null)
+            {
+                //NotifyError("Email veya şifre hatalı");
+                return Json(new { success = false });
+            }
+
+            var checkPass = await _signInManager.PasswordSignInAsync(user, model.Password, false, false);
+
+            if (!checkPass.Succeeded)
+            {
+                //NotifyError("Email veya şifre hatalı");
+                return Json(new { success = false });
+            }
+
+            //int verificationCode = await _sendMailService.SendEmailVerificationCode(model.Email);
+            //TempData["VerificationCode"] = verificationCode;
+            return Json(new { success = true });
+        }
+
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        public async Task<IActionResult> AccessDenied(AccessDeniedVM? accessDeniedVM)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var userRole = await _userManager.GetRolesAsync(user);
+
+            if (accessDeniedVM != null)
+            {
+                if (accessDeniedVM.AreaName == null)
+                {
+                    accessDeniedVM.AreaName = userRole[0].ToString();
+                }
+                return View(accessDeniedVM);
+            }
+            else
+            {
+                accessDeniedVM = new AccessDeniedVM();
+                accessDeniedVM.AreaName = userRole[0].ToString();
+                return View(accessDeniedVM);
+            }
+
+        }
+
     }
 }
