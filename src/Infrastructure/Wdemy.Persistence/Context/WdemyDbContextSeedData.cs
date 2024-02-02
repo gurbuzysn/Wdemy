@@ -19,6 +19,43 @@ namespace Wdemy.Persistence.Context
 
             if (await db.Admins.AnyAsync() || await db.Trainers.AnyAsync() || await db.Students.AnyAsync() || await db.Roles.AnyAsync()) return;
 
+
+            var c1 = new Category() 
+            { 
+                Name = "OnShore Kategorisi",
+                CreatedBy = Guid.NewGuid(),
+                CreatedDate = DateTime.Now,
+                ModifiedBy = Guid.NewGuid(),
+                ModifiedDate = DateTime.Now,
+                Status = Status.Added,
+                SubCategories = new List<SubCategory>() 
+                {
+                    new SubCategory()
+                    {
+                        Name = "Yatay Eksenli Rüzgar Türbinleri Altkategorisi",
+                        CreatedBy = Guid.NewGuid(),
+                        CreatedDate = DateTime.Now,
+                        ModifiedBy = Guid.NewGuid(),
+                        ModifiedDate = DateTime.Now,
+                        Status = Status.Added,
+                        Subjects = new List<Subject>()
+                        {
+                            new Subject()
+                            {
+                                Name = "Motor Yapısı",
+                                CreatedBy = Guid.NewGuid(),
+                                CreatedDate = DateTime.Now,
+                                ModifiedBy = Guid.NewGuid(),
+                                ModifiedDate = DateTime.Now,
+                                Status = Status.Added,
+                            }
+                        }
+                    }
+                }
+            };
+
+            db.Categories.Add(c1);
+
             await AddRoles(db);
 
             var user = new IdentityUser()
