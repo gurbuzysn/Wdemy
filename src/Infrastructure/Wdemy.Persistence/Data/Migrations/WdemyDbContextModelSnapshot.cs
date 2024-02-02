@@ -294,10 +294,6 @@ namespace Wdemy.Persistence.Data.Migrations
                     b.Property<DateTime>("DeletedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<Guid>("ModifiedBy")
                         .HasColumnType("uniqueidentifier");
 
@@ -314,10 +310,6 @@ namespace Wdemy.Persistence.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Category");
-
-                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("Wdemy.Domain.Entities.Student", b =>
@@ -374,6 +366,47 @@ namespace Wdemy.Persistence.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Students");
+                });
+
+            modelBuilder.Entity("Wdemy.Domain.Entities.SubCategory", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CategoryId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("DeletedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("SubCategories");
                 });
 
             modelBuilder.Entity("Wdemy.Domain.Entities.Subject", b =>
@@ -473,18 +506,6 @@ namespace Wdemy.Persistence.Data.Migrations
                     b.ToTable("Trainers");
                 });
 
-            modelBuilder.Entity("Wdemy.Domain.Entities.SubCategory", b =>
-                {
-                    b.HasBaseType("Wdemy.Domain.Entities.Category");
-
-                    b.Property<Guid>("CategoryId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasDiscriminator().HasValue("SubCategory");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -536,17 +557,6 @@ namespace Wdemy.Persistence.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Wdemy.Domain.Entities.Subject", b =>
-                {
-                    b.HasOne("Wdemy.Domain.Entities.SubCategory", "SubCategory")
-                        .WithMany("Subjects")
-                        .HasForeignKey("SubCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("SubCategory");
-                });
-
             modelBuilder.Entity("Wdemy.Domain.Entities.SubCategory", b =>
                 {
                     b.HasOne("Wdemy.Domain.Entities.Category", "Category")
@@ -556,6 +566,17 @@ namespace Wdemy.Persistence.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("Wdemy.Domain.Entities.Subject", b =>
+                {
+                    b.HasOne("Wdemy.Domain.Entities.SubCategory", "SubCategory")
+                        .WithMany("Subjects")
+                        .HasForeignKey("SubCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SubCategory");
                 });
 
             modelBuilder.Entity("Wdemy.Domain.Entities.Category", b =>
