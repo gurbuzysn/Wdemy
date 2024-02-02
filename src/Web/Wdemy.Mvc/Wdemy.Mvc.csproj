@@ -20,6 +20,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Student\Data\" />
+    <Folder Include="Areas\Student\Models\" />
+    <Folder Include="Areas\Trainer\Data\" />
+    <Folder Include="Areas\Trainer\Models\" />
     <Folder Include="Controllers\" />
     <Folder Include="Data\" />
     <Folder Include="Views\Shared\" />

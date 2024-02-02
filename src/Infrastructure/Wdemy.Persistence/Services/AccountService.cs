@@ -18,12 +18,15 @@ namespace Wdemy.Persistence.Services
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IAdminRepository _adminRepository;
+        private readonly ITrainerRepository _trainerRepository;
+        private readonly IStudentRepository _studentRepository;
 
-        public AccountService(UserManager<IdentityUser> userManager, IAdminRepository adminRepository)
+        public AccountService(UserManager<IdentityUser> userManager, IAdminRepository adminRepository, ITrainerRepository trainerRepository, IStudentRepository studentRepository)
         {
             _userManager = userManager;
             _adminRepository = adminRepository;
-
+            _trainerRepository = trainerRepository;
+            _studentRepository = studentRepository;
         }
 
         public async Task<bool> AnyAsync(Expression<Func<IdentityUser, bool>> expression)
@@ -69,7 +72,10 @@ namespace Wdemy.Persistence.Services
             BaseUser? user = role switch
             {
                 "Admin" => await _adminRepository.GetByIdentityAsync(identityId), 
+                "Trainer" => await _trainerRepository.GetByIdentityAsync(identityId), 
+                "Student" => await _studentRepository.GetByIdentityAsync(identityId),
                 _ => null
+
             };
 
             return user is null ? Guid.Empty : user.Id;
