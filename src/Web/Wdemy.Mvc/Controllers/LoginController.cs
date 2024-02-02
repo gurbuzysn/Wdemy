@@ -95,6 +95,7 @@ namespace Wdemy.Mvc.Controllers
 
         public async Task<IActionResult> Logout()
         {
+            TempData["Login"] = null;
             await _signInManager.SignOutAsync();
             return RedirectToAction(nameof(Index));
         }
