@@ -73,8 +73,8 @@ namespace Wdemy.Persistence.Context
                 CreatedDate = DateTime.Now,
                 ModifiedBy = Guid.NewGuid(),
                 ModifiedDate = DateTime.Now,
-                FirstName = "Egitmen",
-                LastName = "Wdemy",
+                FirstName = "Mustafa",
+                LastName = "Demir",
                 Email = AuthorizationConstants.DEFAULT_TRAINER_USER,
                 DateOfBirth = new DateTime(1985, 01, 01),
                 Gender = Gender.Erkek,
@@ -97,22 +97,22 @@ namespace Wdemy.Persistence.Context
             var studentRoleId = db.Roles.FirstOrDefault(role => role.Name == Roles.Student.ToString())!.Id;
             await db.UserRoles.AddAsync(new IdentityUserRole<string> { UserId = studentUser.Id, RoleId = studentRoleId });
 
-            var student = new Trainer()
+            var student = new Student()
             {
                 Status = Status.Added,
                 CreatedBy = Guid.NewGuid(),
                 CreatedDate = DateTime.Now,
                 ModifiedBy = Guid.NewGuid(),
                 ModifiedDate = DateTime.Now,
-                FirstName = "Egitmen",
-                LastName = "Wdemy",
-                Email = AuthorizationConstants.DEFAULT_TRAINER_USER,
+                FirstName = "Berkan",
+                LastName = "Yılmaz",
+                Email = AuthorizationConstants.DEFAULT_STUDENT_USER,
                 DateOfBirth = new DateTime(1985, 01, 01),
                 Gender = Gender.Erkek,
                 IdentityId = new Guid(studentUser.Id),
             };
 
-            await db.Trainers.AddAsync(student);
+            await db.Students.AddAsync(student);
 
             await db.SaveChangesAsync();
         }
