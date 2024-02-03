@@ -13,13 +13,15 @@ public class WdemyDbContext : IdentityDbContext<IdentityUser>
     {
 
     }
-
     public DbSet<Admin> Admins => Set<Admin>();
     public DbSet<Trainer> Trainers => Set<Trainer>();
     public DbSet<Student> Students => Set<Student>();
     public DbSet<Category> Categories => Set<Category>();
     public DbSet<SubCategory> SubCategories => Set<SubCategory>();
     public DbSet<Subject> Subjects => Set<Subject>();
+    public DbSet<Course> Courses => Set<Course>();
+    public DbSet<Section> Sections => Set<Section>();
+    public DbSet<Lesson> Lessons => Set<Lesson>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

@@ -19,7 +19,7 @@ namespace Wdemy.Domain.Entities
         public Guid TrainerId { get; set; }
 
         public virtual Trainer Trainer { get; set; } = null!;
-        public ICollection<Section> Sections { get; set; } = new HashSet<Section>();
-        public ICollection<Student> Students { get; set; } = new HashSet<Student>();
+        public virtual ICollection<Section> Sections { get; set; } = new HashSet<Section>();
+        public virtual ICollection<Student> Students { get; set; } = new HashSet<Student>();
     }
 }
