@@ -4,11 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Wdemy.Application.Dtos.Course;
+using Wdemy.Domain.Utilities.Result;
 
 namespace Wdemy.Application.Interfaces.Services
 {
     public interface ICourseService
     {
-      //Task<IAsyncResult<CourseDto>> AddAsync(CourseCreateDto courseCreateDto);
+        Task<IDataResult<CourseDto>> GetByIdAsync(Guid id);
+        //Task<IDataResult<List<CourseListDto>>> GetAllAsync();
+        Task<IDataResult<CourseDto>> AddAsync(CourseCreateDto courseCreateDto);
+        Task<IResult> DeleteAsync(Guid id);
     }
 }
