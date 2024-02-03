@@ -8,5 +8,6 @@ namespace Wdemy.Application.Dtos.Course
 {
     public class CourseCreateDto
     {
+        public string Name { get; set; } = null!;
     }
 }

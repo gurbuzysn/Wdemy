@@ -25,15 +25,17 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
             return View();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create(TrainerCourseCreateVM trainerCourseCreateVM)
-        {
-            if (!ModelState.IsValid)
-                return View(trainerCourseCreateVM);
+        //[HttpPost]
+        //public async Task<IActionResult> Create(TrainerCourseCreateVM trainerCourseCreateVM)
+        //{
+        //    if (!ModelState.IsValid)
+        //        return View(trainerCourseCreateVM);
 
-            var courseDto = _mapper.Map<CourseCreateDto>(trainerCourseCreateVM);
+        //    var courseDto = _mapper.Map<CourseCreateDto>(trainerCourseCreateVM);
 
-        }
+        //    return Ok();
+
+        //}
 
     }
 }
