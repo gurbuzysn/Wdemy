@@ -33,7 +33,7 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
 
             var courseDto = _mapper.Map<CourseCreateDto>(trainerCourseCreateVM);
 
-            var addCourseResult = await _courseService.AddAsync(courseDto);
+            //var addCourseResult = await _courseService.AddAsync(courseDto);
 
             return Ok();
 
