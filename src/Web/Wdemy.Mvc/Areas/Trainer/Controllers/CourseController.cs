@@ -6,7 +6,7 @@ using Wdemy.Mvc.Areas.Trainer.Models;
 namespace Wdemy.Mvc.Areas.Trainer.Controllers
 {
     
-    public class CourseController : Controller
+    public class CourseController : TrainerBaseController
     {
         private readonly IMapper _mapper;
 
@@ -35,7 +35,7 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
 
             //var addCourseResult = await _courseService.AddAsync(courseDto);
 
-            return Ok();
+            //return Ok();
 
         //}
 

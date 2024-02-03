@@ -7,7 +7,10 @@
 }
 
 
-<form>
-    <input asp-for="Name" type="" value="Deniz Üzerinde Platform Kurma İlkeleri" />
-    <button type="submit" class="btn btn-primary">Gönder</button>
+<form method="post">
+    <div class="form-group my-5">
+        <h3>Kurs Ekle</h3>
+        <input asp-for="Name" class="form-control"/>
+        <button type="submit" class="btn btn-primary my-3 btn-block ">Gönder</button>
+    </div>
 </form>
