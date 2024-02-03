@@ -6,7 +6,7 @@ using Wdemy.Mvc.Areas.Trainer.Models;
 namespace Wdemy.Mvc.Areas.Trainer.Controllers
 {
     
-    public class CourseController : TrainerBaseController
+    public class CourseController : Controller
     {
         private readonly IMapper _mapper;
 
@@ -25,19 +25,19 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
             return View();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create(TrainerCourseCreateVM trainerCourseCreateVM)
-        {
-            if (!ModelState.IsValid)
-                return View(trainerCourseCreateVM);
+        //[HttpPost]
+        //public async Task<IActionResult> Create(TrainerCourseCreateVM trainerCourseCreateVM)
+        //{
+        //    if (!ModelState.IsValid)
+        //        return View(trainerCourseCreateVM);
 
-            var courseDto = _mapper.Map<CourseCreateDto>(trainerCourseCreateVM);
+        //    var courseDto = _mapper.Map<CourseCreateDto>(trainerCourseCreateVM);
 
             //var addCourseResult = await _courseService.AddAsync(courseDto);
 
             return Ok();
 
-        }
+        //}
 
     }
 }
