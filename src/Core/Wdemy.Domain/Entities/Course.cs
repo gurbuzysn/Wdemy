@@ -17,8 +17,9 @@ namespace Wdemy.Domain.Entities
         public int TotalParts { get; set; }
         public int TotalLesson { get; set; }
         public TimeSpan TotalDuration { get; set; }
+        public Guid TrainerId { get; set; }
 
-        public virtual Trainer Author { get; set; } = null!;
+        public virtual Trainer Trainer { get; set; } = null!;
         public ICollection<Section> Parts { get; set; } = new HashSet<Section>();
         public ICollection<Student> Students { get; set; } = new HashSet<Student>();
     }
