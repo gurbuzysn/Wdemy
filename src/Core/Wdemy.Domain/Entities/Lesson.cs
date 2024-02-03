@@ -11,7 +11,10 @@ namespace Wdemy.Domain.Entities
     {
         public string Name { get; set; } = null!;
         public TimeSpan Duration { get; set; }
-        public string DocumentUri{ get; set; } = null!;
-        public string VideoUrl { get; set; } = null!;
+        public string DocumentUri { get; set; } = null!;
+        public Guid SectionId { get; set; }
+        public virtual Video Video { get; set; } = null!;
+
+        public virtual Section Section { get; set; } = null!;
     }
 }

@@ -12,14 +12,14 @@ namespace Wdemy.Domain.Entities
     {
         public string Name { get; set; } = null!;
         public string Description { get; set; } = null!;
-        public Language Language { get; set; }
         public double Points { get; set; }
         public int StudentCount { get; set; }
         public int TotalParts { get; set; }
         public int TotalLesson { get; set; }
         public TimeSpan TotalDuration { get; set; }
-        public string Content { get; set; }
 
         public virtual Trainer Author { get; set; } = null!;
+        public ICollection<Section> Parts { get; set; } = new HashSet<Section>();
+        public ICollection<Student> Students { get; set; } = new HashSet<Student>();
     }
 }

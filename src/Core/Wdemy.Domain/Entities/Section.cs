@@ -7,12 +7,15 @@ using Wdemy.Domain.Common.Base;
 
 namespace Wdemy.Domain.Entities
 {
-    public class Part : AuditableEntity
+    public class Section : AuditableEntity
     {
         public string Name { get; set; } = null!;
         public int LessonCount { get; set; }
         public TimeSpan TotalDuration { get; set; }
+        public Guid CourseId { get; set; }
 
+
+        public virtual Course Course { get; set; } = null!;
         public virtual ICollection<Lesson> Lessons { get; set; } = new HashSet<Lesson>();
     }
 }
