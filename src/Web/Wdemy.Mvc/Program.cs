@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 using Wdemy.Mvc.Authorization;
 using Wdemy.Persistence.Context;
 using Wdemy.Persistence.Interfaces.Repository;
@@ -17,19 +18,9 @@ builder.Services.AddDbContext<WdemyDbContext>(options =>
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 {
     options.User.RequireUniqueEmail = true;
-
     options.SignIn.RequireConfirmedAccount = false;
     options.SignIn.RequireConfirmedEmail = false;
     options.SignIn.RequireConfirmedPhoneNumber = false;
-
-    /* TODO: Login giriþleri kolaylaþtýrmak için þifre gereksinimleri basitleþtirildi. Gereksinimler deðiþtirilecek.
-     options.Password.RequiredLength = 8;
-    options.Password.RequireDigit = true;
-    options.Password.RequireNonAlphanumeric = true;
-    options.Password.RequireLowercase = true;
-    options.Password.RequireUppercase = true;
-    options.Password.RequiredUniqueChars = 1;
-     */
     options.Password.RequiredLength = 4;
     options.Password.RequireDigit = false;
     options.Password.RequireNonAlphanumeric = false;
@@ -39,6 +30,8 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 })
             .AddEntityFrameworkStores<WdemyDbContext>()
             .AddClaimsPrincipalFactory<ApplicationUserClaimsPrincipalFactory>();
+
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 builder.Services.ConfigureApplicationCookie(options =>
 {

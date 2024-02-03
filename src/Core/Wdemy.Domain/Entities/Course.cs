@@ -11,8 +11,7 @@ namespace Wdemy.Domain.Entities
     public class Course : AuditableEntity
     {
         public string Name { get; set; } = null!;
-        public string Description { get; set; } = null!;
-        public double Points { get; set; }
+        public string? Description { get; set; }
         public int StudentCount { get; set; }
         public int TotalParts { get; set; }
         public int TotalLesson { get; set; }
@@ -20,7 +19,7 @@ namespace Wdemy.Domain.Entities
         public Guid TrainerId { get; set; }
 
         public virtual Trainer Trainer { get; set; } = null!;
-        public ICollection<Section> Parts { get; set; } = new HashSet<Section>();
+        public ICollection<Section> Sections { get; set; } = new HashSet<Section>();
         public ICollection<Student> Students { get; set; } = new HashSet<Student>();
     }
 }
