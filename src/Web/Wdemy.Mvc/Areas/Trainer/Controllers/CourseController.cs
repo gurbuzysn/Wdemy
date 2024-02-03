@@ -8,5 +8,20 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(TrainerCourseCreateVM trainerCourseCreateVM)
+        {
+            if (!ModelState.IsValid)
+                return View(trainerCourseCreateVM);
+
+        }
+
     }
 }

@@ -22,7 +22,7 @@ namespace Wdemy.Persistence.Context
 
             var c1 = new Category() 
             { 
-                Name = "OnShore Kategorisi",
+                Name = "OffShore Kategorisi",
                 CreatedBy = Guid.NewGuid(),
                 CreatedDate = DateTime.Now,
                 ModifiedBy = Guid.NewGuid(),
@@ -42,7 +42,7 @@ namespace Wdemy.Persistence.Context
                         {
                             new Subject()
                             {
-                                Name = "Motor Yapısı",
+                                Name = "Motor Yapısı Kursu",
                                 CreatedBy = Guid.NewGuid(),
                                 CreatedDate = DateTime.Now,
                                 ModifiedBy = Guid.NewGuid(),
