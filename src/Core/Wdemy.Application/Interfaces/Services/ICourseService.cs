@@ -9,6 +9,6 @@ namespace Wdemy.Application.Interfaces.Services
 {
     public interface ICourseService
     {
-      Task<IAsyncResult<CourseDto>> AddAsync(CourseCreateDto courseCreateDto);
+      //Task<IAsyncResult<CourseDto>> AddAsync(CourseCreateDto courseCreateDto);
     }
 }

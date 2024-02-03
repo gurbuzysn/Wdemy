@@ -252,13 +252,12 @@ namespace Wdemy.Persistence.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Course",
+                name: "Courses",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Points = table.Column<double>(type: "float", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     StudentCount = table.Column<int>(type: "int", nullable: false),
                     TotalParts = table.Column<int>(type: "int", nullable: false),
                     TotalLesson = table.Column<int>(type: "int", nullable: false),
@@ -274,9 +273,9 @@ namespace Wdemy.Persistence.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Course", x => x.Id);
+                    table.PrimaryKey("PK_Courses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Course_Trainers_TrainerId",
+                        name: "FK_Courses_Trainers_TrainerId",
                         column: x => x.TrainerId,
                         principalTable: "Trainers",
                         principalColumn: "Id",
@@ -310,7 +309,7 @@ namespace Wdemy.Persistence.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Section",
+                name: "Sections",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -328,11 +327,11 @@ namespace Wdemy.Persistence.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Section", x => x.Id);
+                    table.PrimaryKey("PK_Sections", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Section_Course_CourseId",
+                        name: "FK_Sections_Courses_CourseId",
                         column: x => x.CourseId,
-                        principalTable: "Course",
+                        principalTable: "Courses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -362,14 +361,14 @@ namespace Wdemy.Persistence.Data.Migrations
                 {
                     table.PrimaryKey("PK_Students", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Students_Course_CourseId",
+                        name: "FK_Students_Courses_CourseId",
                         column: x => x.CourseId,
-                        principalTable: "Course",
+                        principalTable: "Courses",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "Lesson",
+                name: "Lessons",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -387,11 +386,11 @@ namespace Wdemy.Persistence.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Lesson", x => x.Id);
+                    table.PrimaryKey("PK_Lessons", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Lesson_Section_SectionId",
+                        name: "FK_Lessons_Sections_SectionId",
                         column: x => x.SectionId,
-                        principalTable: "Section",
+                        principalTable: "Sections",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -416,9 +415,9 @@ namespace Wdemy.Persistence.Data.Migrations
                 {
                     table.PrimaryKey("PK_Video", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Video_Lesson_LessonId",
+                        name: "FK_Video_Lessons_LessonId",
                         column: x => x.LessonId,
-                        principalTable: "Lesson",
+                        principalTable: "Lessons",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -463,18 +462,18 @@ namespace Wdemy.Persistence.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Course_TrainerId",
-                table: "Course",
+                name: "IX_Courses_TrainerId",
+                table: "Courses",
                 column: "TrainerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Lesson_SectionId",
-                table: "Lesson",
+                name: "IX_Lessons_SectionId",
+                table: "Lessons",
                 column: "SectionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Section_CourseId",
-                table: "Section",
+                name: "IX_Sections_CourseId",
+                table: "Sections",
                 column: "CourseId");
 
             migrationBuilder.CreateIndex(
@@ -539,16 +538,16 @@ namespace Wdemy.Persistence.Data.Migrations
                 name: "SubCategories");
 
             migrationBuilder.DropTable(
-                name: "Lesson");
+                name: "Lessons");
 
             migrationBuilder.DropTable(
                 name: "Categories");
 
             migrationBuilder.DropTable(
-                name: "Section");
+                name: "Sections");
 
             migrationBuilder.DropTable(
-                name: "Course");
+                name: "Courses");
 
             migrationBuilder.DropTable(
                 name: "Trainers");

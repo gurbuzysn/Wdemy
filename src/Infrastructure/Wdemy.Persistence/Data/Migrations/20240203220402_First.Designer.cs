@@ -12,7 +12,7 @@ using Wdemy.Persistence.Context;
 namespace Wdemy.Persistence.Data.Migrations
 {
     [DbContext(typeof(WdemyDbContext))]
-    [Migration("20240203071126_First")]
+    [Migration("20240203220402_First")]
     partial class First
     {
         /// <inheritdoc />
@@ -334,7 +334,6 @@ namespace Wdemy.Persistence.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("ModifiedBy")
@@ -346,9 +345,6 @@ namespace Wdemy.Persistence.Data.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Points")
-                        .HasColumnType("float");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -372,7 +368,7 @@ namespace Wdemy.Persistence.Data.Migrations
 
                     b.HasIndex("TrainerId");
 
-                    b.ToTable("Course");
+                    b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("Wdemy.Domain.Entities.Lesson", b =>
@@ -420,7 +416,7 @@ namespace Wdemy.Persistence.Data.Migrations
 
                     b.HasIndex("SectionId");
 
-                    b.ToTable("Lesson");
+                    b.ToTable("Lessons");
                 });
 
             modelBuilder.Entity("Wdemy.Domain.Entities.Section", b =>
@@ -467,7 +463,7 @@ namespace Wdemy.Persistence.Data.Migrations
 
                     b.HasIndex("CourseId");
 
-                    b.ToTable("Section");
+                    b.ToTable("Sections");
                 });
 
             modelBuilder.Entity("Wdemy.Domain.Entities.Student", b =>
@@ -790,7 +786,7 @@ namespace Wdemy.Persistence.Data.Migrations
             modelBuilder.Entity("Wdemy.Domain.Entities.Section", b =>
                 {
                     b.HasOne("Wdemy.Domain.Entities.Course", "Course")
-                        .WithMany("Parts")
+                        .WithMany("Sections")
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -845,7 +841,7 @@ namespace Wdemy.Persistence.Data.Migrations
 
             modelBuilder.Entity("Wdemy.Domain.Entities.Course", b =>
                 {
-                    b.Navigation("Parts");
+                    b.Navigation("Sections");
 
                     b.Navigation("Students");
                 });
