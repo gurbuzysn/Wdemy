@@ -10,18 +10,19 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Create()
+        public Task<IActionResult> Create()
         {
+
             return View();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create(TrainerCourseCreateVM trainerCourseCreateVM)
-        {
-            if (!ModelState.IsValid)
-                return View(trainerCourseCreateVM);
+        //[HttpPost]
+        //public async Task<IActionResult> Create(TrainerCourseCreateVM trainerCourseCreateVM)
+        //{
+        //    if (!ModelState.IsValid)
+        //        return View(trainerCourseCreateVM);
 
-        }
+        //}
 
     }
 }
