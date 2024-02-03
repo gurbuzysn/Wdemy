@@ -12,6 +12,7 @@ namespace Wdemy.Domain.Entities
         public string Name { get; set; } = null!;
         public int LessonCount { get; set; }
         public TimeSpan TotalDuration { get; set; }
-        public int MyProperty { get; set; }
+
+        public virtual ICollection<Lesson> Lessons { get; set; } = new HashSet<Lesson>();
     }
 }
