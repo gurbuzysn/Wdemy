@@ -55,5 +55,14 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
 
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Update(Guid id)
+        {
+            var course = await _courseService.GetByIdAsync(id);
+            var courseEditVM = _mapper.Map<TrainerCourseEditVM>(course.Data);
+            return View(courseEditVM);
+        }
+
+
     }
 }

@@ -52,9 +52,9 @@
                                             </a>
 
                                             <ul class="dropdown-menu">
-                                                <li><a asp-action="Update" class="dropdown-item">Kursu Düzenle</a></li>
-                                                <li><a asp-action="Details" class="dropdown-item">Kurs Detayları</a></li>
-                                                <li><a asp-action="Delete" class="dropdown-item">Kursu Sil</a></li>
+                                                <li><a asp-action="Update" asp-route-id="@course.Id" class="dropdown-item">Kursu Düzenle</a></li>
+                                                <li><a asp-action="Details" asp-route-id="@course.Id" class="dropdown-item">Kurs Detayları</a></li>
+                                                <li><a asp-action="Delete" asp-route-id="@course.Id" class="dropdown-item">Kursu Sil</a></li>
                                             </ul>
                                         </div>
                                     </td>
