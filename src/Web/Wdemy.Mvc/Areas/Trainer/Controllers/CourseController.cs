@@ -17,9 +17,19 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
             _mapper = mapper;
             _courseService = courseService;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var allCourses = await _courseService.GetAllAsync();
+            var allCoursesListVM = allCourses.Data.Select(c => new TrainerCourseListVM
+            {
+                Name = c.Name,
+                StudentCount = c.StudentCount,
+                TotalParts = c.TotalParts,
+                TotalLesson = c.TotalLesson,
+                TotalDuration = c.TotalDuration,
+                CreatedDate = c.CreatedDate
+            }).ToList();
+            return View(allCoursesListVM);
         }
 
         [HttpGet]

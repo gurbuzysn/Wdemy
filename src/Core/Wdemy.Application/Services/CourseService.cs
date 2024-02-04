@@ -34,8 +34,6 @@ namespace Wdemy.Application.Services
 
         }
 
-
-
         public async Task<IDataResult<Course>> AddAsync(CourseCreateDto courseCreateDto)
         {
             Course course = new Course
@@ -60,14 +58,21 @@ namespace Wdemy.Application.Services
             return new SuccessDataResult<Course>(course, Messages.AddSuccess);
         }
 
-
-
-
         public Task<IResult> DeleteAsync(Guid id)
         {
             throw new NotImplementedException();
         }
 
+        public async Task<IDataResult<List<Course>>> GetAllAsync()
+        {
+            var allCourses = await _courseRepository.GetAllAsync();
+            
+            if(allCourses == null)
+            {
+                return new ErrorDataResult<List<Course>>(Messages.CourseNotFound);
+            }
 
+            return new SuccessDataResult<List<Course>>(allCourses, Messages.ListedSuccess);
+        }
     }
 }
