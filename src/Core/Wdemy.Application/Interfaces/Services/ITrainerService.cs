@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 using Wdemy.Application.Dtos.Course;
 using Wdemy.Application.Dtos.Trainer;
 using Wdemy.Application.Utilities.Result;
+using Wdemy.Domain.Entities;
 
 namespace Wdemy.Application.Interfaces.Services
 {
     public interface ITrainerService
     {
-        Task<IDataResult<TrainerDto>> GetByIdAsync(Guid id);
+        Task<IDataResult<Trainer>> GetByIdAsync(Guid id);
 
     }
 }

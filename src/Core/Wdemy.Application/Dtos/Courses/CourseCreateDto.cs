@@ -11,7 +11,6 @@ namespace Wdemy.Application.Dtos.Course
     {
         public string Name { get; set; } = null!;
         public Guid TrainerId { get; set; }
-        public TrainerDto Trainer { get; set; }
 
     }
 }

@@ -41,7 +41,7 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
 
             var addCourseResult = await _courseService.AddAsync(courseCreateDto);
 
-            return Ok();
+            return RedirectToAction(nameof(Index));
 
         }
 

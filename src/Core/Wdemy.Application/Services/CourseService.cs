@@ -11,6 +11,7 @@ using AutoMapper;
 using Wdemy.Application.Interfaces.Repository;
 using Wdemy.Application.Utilities.Result.Concrete;
 using Wdemy.Application.Constant;
+using Wdemy.Domain.Enums;
 
 namespace Wdemy.Application.Services
 {
@@ -27,7 +28,7 @@ namespace Wdemy.Application.Services
             _trainerService = trainerService;
         }
 
-        public Task<IDataResult<CourseDto>> GetByIdAsync(Guid id)
+        public Task<IDataResult<Course>> GetByIdAsync(Guid id)
         {
             throw new NotImplementedException();
 
@@ -35,12 +36,17 @@ namespace Wdemy.Application.Services
 
 
 
-        public async Task<IDataResult<CourseDto>> AddAsync(CourseCreateDto courseCreateDto)
+        public async Task<IDataResult<Course>> AddAsync(CourseCreateDto courseCreateDto)
         {
-            var trainerDto = await _trainerService.GetByIdAsync(courseCreateDto.TrainerId);
-            courseCreateDto.Trainer = trainerDto.Data;
-            var course = _mapper.Map<Course>(courseCreateDto);
-
+            Course course = new Course
+            {
+                Name = courseCreateDto.Name,
+                TrainerId = courseCreateDto.TrainerId,
+                Trainer = (await _trainerService.GetByIdAsync(courseCreateDto.TrainerId)).Data,
+                Status = Status.Added,
+                CreatedBy = courseCreateDto.TrainerId,
+                CreatedDate = DateTime.Now,
+            };
 
             try
             {
@@ -48,10 +54,10 @@ namespace Wdemy.Application.Services
             }
             catch (Exception)
             {
-                return new ErrorDataResult<CourseDto>(Messages.AddFail);
+                return new ErrorDataResult<Course>(Messages.AddFail);
             }
 
-            return new SuccessDataResult<CourseDto>(_mapper.Map<CourseDto>(course), Messages.AddSuccess);
+            return new SuccessDataResult<Course>(course, Messages.AddSuccess);
         }
 
 

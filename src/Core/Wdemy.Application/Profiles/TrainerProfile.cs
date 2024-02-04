@@ -13,8 +13,9 @@ namespace Wdemy.Application.Profiles
     {
         public TrainerProfile()
         {
-            CreateMap<TrainerDto, Trainer>().ReverseMap();
-
+            CreateMap<TrainerDto, Trainer>()
+                .ForMember(dest => dest.Courses, opt => opt.MapFrom(src => src.Courses))
+                .ReverseMap();
         }
     }
 }

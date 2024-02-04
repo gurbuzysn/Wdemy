@@ -25,16 +25,16 @@ namespace Wdemy.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<IDataResult<TrainerDto>> GetByIdAsync(Guid id)
+        public async Task<IDataResult<Trainer>> GetByIdAsync(Guid id)
         {
            var trainer = await _trainerRepository.GetByIdAsync(id);
 
             if (trainer == null)
             {
-                return new ErrorDataResult<TrainerDto>();
+                return new ErrorDataResult<Trainer>();
             }
 
-            return new SuccessDataResult<TrainerDto>(_mapper.Map<TrainerDto>(trainer), Messages.FoundSuccess);
+            return new SuccessDataResult<Trainer>(trainer, Messages.FoundSuccess);
         }
     }
 }
