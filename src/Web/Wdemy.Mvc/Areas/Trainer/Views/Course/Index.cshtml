@@ -17,7 +17,10 @@
 
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Kurslarım</h5>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="card-title">Kurslarım</h5>
+                        <a asp-controller="Course" asp-action="Create" class="btn btn-primary h-50">Kurs Ekle</a>
+                    </div>
 
                     <!-- Table with stripped rows -->
                     <table class="table datatable">
@@ -30,9 +33,6 @@
                                 <th>Toplam Kurs Süresi</th>
                                 <th>Oluşturulma Tarihi</th>
                                 <th>Kurs İşlemleri</th>
-
-
-
                             </tr>
                         </thead>
                         <tbody>
