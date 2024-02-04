@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Wdemy.Domain.Entities;
 
-namespace Wdemy.Persistence.Interfaces.Repository
+namespace Wdemy.Application.Interfaces.Repository
 {
     public interface ITrainerRepository
     {

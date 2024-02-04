@@ -22,7 +22,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Wdemy.Application\Wdemy.Application.csproj" />
-    <ProjectReference Include="..\..\Core\Wdemy.Domain\Wdemy.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Interfaces\Repository\" />
   </ItemGroup>
 
 </Project>
