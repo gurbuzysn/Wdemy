@@ -2,11 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Wdemy.Application.Dtos.Course;
 using Wdemy.Application.Interfaces.Services;
-using Wdemy.Mvc.Areas.Trainer.Models;
+using Wdemy.Mvc.Areas.Trainer.Models.Course;
 
 namespace Wdemy.Mvc.Areas.Trainer.Controllers
 {
-    
+
     public class CourseController : TrainerBaseController
     {
         private readonly IMapper _mapper;
@@ -59,7 +59,7 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
         public async Task<IActionResult> Update(Guid id)
         {
             var course = await _courseService.GetByIdAsync(id);
-            var courseEditVM = _mapper.Map<TrainerCourseEditVM>(course.Data);
+            var courseEditVM = _mapper.Map<TrainerCourseUpdateVM>(course.Data);
             return View(courseEditVM);
         }
 

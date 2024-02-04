@@ -1,4 +1,4 @@
-﻿namespace Wdemy.Mvc.Areas.Trainer.Models
+﻿namespace Wdemy.Mvc.Areas.Trainer.Models.Courses
 {
     public class TrainerCourseCreateVM
     {
