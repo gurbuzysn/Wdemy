@@ -2,6 +2,7 @@
 {
     public class TrainerCourseCreateVM
     {
-        public string Name { get; set; } = null!;   
+        public string Name { get; set; } = null!;
+        public Guid TrainerId { get; set; }
     }
 }

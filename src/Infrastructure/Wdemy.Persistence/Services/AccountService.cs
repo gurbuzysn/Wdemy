@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Wdemy.Application.Constant;
 using Wdemy.Domain.Common.Base;
 using Wdemy.Domain.Enums;
-using Wdemy.Persistence.Interfaces.Repository;
+using Wdemy.Application.Interfaces.Repository;
 using Wdemy.Persistence.Interfaces.Services;
 
 namespace Wdemy.Persistence.Services

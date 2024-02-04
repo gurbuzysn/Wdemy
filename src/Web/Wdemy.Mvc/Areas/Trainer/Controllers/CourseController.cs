@@ -34,6 +34,9 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
             if (!ModelState.IsValid)
                 return View(trainerCourseCreateVM);
 
+            var userId = Guid.Parse(UserId);
+            trainerCourseCreateVM.TrainerId = userId;
+
             var courseCreateDto = _mapper.Map<CourseCreateDto>(trainerCourseCreateVM);
 
             var addCourseResult = await _courseService.AddAsync(courseCreateDto);

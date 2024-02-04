@@ -10,6 +10,7 @@ using Wdemy.Application.Utilities.Result;
 using AutoMapper;
 using Wdemy.Application.Interfaces.Repository;
 using Wdemy.Application.Utilities.Result.Concrete;
+using Wdemy.Application.Constant;
 
 namespace Wdemy.Application.Services
 {
@@ -17,11 +18,13 @@ namespace Wdemy.Application.Services
     {
         private readonly IMapper _mapper;
         private readonly ICourseRepository _courseRepository;
+        private readonly ITrainerService _trainerService;
 
-        public CourseService(IMapper mapper, ICourseRepository courseRepository)
+        public CourseService(IMapper mapper, ICourseRepository courseRepository, ITrainerService trainerService)
         {
             _mapper = mapper;
             _courseRepository = courseRepository;
+            _trainerService = trainerService;
         }
 
         public Task<IDataResult<CourseDto>> GetByIdAsync(Guid id)
@@ -32,14 +35,23 @@ namespace Wdemy.Application.Services
 
 
 
-        public Task<IDataResult<CourseDto>> AddAsync(CourseCreateDto courseCreateDto)
+        public async Task<IDataResult<CourseDto>> AddAsync(CourseCreateDto courseCreateDto)
         {
-            //if(!ModelState.IsValid)
-            //    return new ErrorDataResult<CourseDto>("Model is not valid");
-
+            var trainerDto = await _trainerService.GetByIdAsync(courseCreateDto.TrainerId);
+            courseCreateDto.Trainer = trainerDto.Data;
             var course = _mapper.Map<Course>(courseCreateDto);
 
 
+            try
+            {
+                var result = await _courseRepository.AddAsync(course);
+            }
+            catch (Exception)
+            {
+                return new ErrorDataResult<CourseDto>(Messages.AddFail);
+            }
+
+            return new SuccessDataResult<CourseDto>(_mapper.Map<CourseDto>(course), Messages.AddSuccess);
         }
 
 
@@ -50,6 +62,6 @@ namespace Wdemy.Application.Services
             throw new NotImplementedException();
         }
 
-        
+
     }
 }

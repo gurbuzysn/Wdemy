@@ -5,7 +5,7 @@ using Wdemy.Application.Interfaces.Services;
 using Wdemy.Application.Services;
 using Wdemy.Mvc.Authorization;
 using Wdemy.Persistence.Context;
-using Wdemy.Persistence.Interfaces.Repository;
+using Wdemy.Application.Interfaces.Repository;
 using Wdemy.Persistence.Interfaces.Services;
 using Wdemy.Persistence.Repositories;
 using Wdemy.Persistence.Services;
@@ -52,11 +52,14 @@ builder.Services.ConfigureApplicationCookie(options =>
 });
 
 
+builder.Services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 builder.Services.AddScoped<ITrainerRepository, TrainerRepository>();
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddScoped<ICourseService, CourseService>();
+builder.Services.AddScoped<ICourseRepository, CourseRepository>();
+builder.Services.AddScoped<ITrainerService, TrainerService>();
 
 
 // Add services to the container.

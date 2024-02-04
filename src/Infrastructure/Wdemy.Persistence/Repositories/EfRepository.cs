@@ -10,7 +10,7 @@ using Wdemy.Persistence.Context;
 
 namespace Wdemy.Persistence.Repositories
 {
-    public abstract class EfRepository<T> : IRepository<T> where T : BaseEntity
+    public class EfRepository<T> : IRepository<T> where T : BaseEntity
     {
         protected readonly WdemyDbContext _db;
 
