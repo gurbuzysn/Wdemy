@@ -13,7 +13,6 @@ async function submitSection(courseId)
         let sectionVM = {
             SectionName: sectionName,
             CourseId: courseId 
-            
         }
 
        return $ajax({
