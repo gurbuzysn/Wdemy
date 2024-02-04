@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Wdemy.Application.Dtos.Course;
+using Wdemy.Application.Interfaces.Services;
 using Wdemy.Mvc.Areas.Trainer.Models;
 
 namespace Wdemy.Mvc.Areas.Trainer.Controllers
@@ -9,10 +10,12 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
     public class CourseController : TrainerBaseController
     {
         private readonly IMapper _mapper;
+        private readonly ICourseService _courseService;
 
-        public CourseController(IMapper mapper)
+        public CourseController(IMapper mapper, ICourseService courseService)
         {
             _mapper = mapper;
+            _courseService = courseService;
         }
         public IActionResult Index()
         {
@@ -31,9 +34,9 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
             if (!ModelState.IsValid)
                 return View(trainerCourseCreateVM);
 
-            var courseDto = _mapper.Map<CourseCreateDto>(trainerCourseCreateVM);
+            var courseCreateDto = _mapper.Map<CourseCreateDto>(trainerCourseCreateVM);
 
-            //var addCourseResult = await _courseService.AddAsync(courseDto);
+            var addCourseResult = await _courseService.AddAsync(courseCreateDto);
 
             return Ok();
 

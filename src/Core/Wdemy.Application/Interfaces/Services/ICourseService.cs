@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Wdemy.Application.Dtos.Course;
-using Wdemy.Domain.Utilities.Result;
+using Wdemy.Application.Utilities.Result;
 
 namespace Wdemy.Application.Interfaces.Services
 {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Wdemy.Domain.Utilities.Result
+namespace Wdemy.Application.Utilities.Result
 {
     public interface IDataResult<T> : IResult where T : class
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Wdemy.Domain.Utilities.Result.Concrete
+namespace Wdemy.Application.Utilities.Result.Concrete
 {
     public class DataResult<T> : Result, IDataResult<T> where T : class
     {

@@ -10,7 +10,7 @@ using Wdemy.Persistence.Interfaces.Repository;
 
 namespace Wdemy.Persistence.Repositories
 {
-    public class CourseRepository : EfRepository<Course>, ICourseRepository<Course>
+    public class CourseRepository : EfRepository<Course>, ICourseRepository
     {
         public CourseRepository(WdemyDbContext db) : base(db)
         {

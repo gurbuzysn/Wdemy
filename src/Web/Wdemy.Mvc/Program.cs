@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using Wdemy.Application.Interfaces.Services;
+using Wdemy.Application.Services;
 using Wdemy.Mvc.Authorization;
 using Wdemy.Persistence.Context;
 using Wdemy.Persistence.Interfaces.Repository;
@@ -54,6 +56,7 @@ builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 builder.Services.AddScoped<ITrainerRepository, TrainerRepository>();
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+builder.Services.AddScoped<ICourseService, CourseService>();
 
 
 // Add services to the container.
