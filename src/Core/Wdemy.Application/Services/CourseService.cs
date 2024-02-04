@@ -28,9 +28,14 @@ namespace Wdemy.Application.Services
             _trainerService = trainerService;
         }
 
-        public Task<IDataResult<Course>> GetByIdAsync(Guid id)
+        public async Task<IDataResult<Course>> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var course = await _courseRepository.GetByIdAsync(id);
+            if (course == null)
+            {
+                return new ErrorDataResult<Course>(Messages.CourseNotFound);
+            }
+            return new SuccessDataResult<Course>(course, Messages.FoundSuccess);
 
         }
 

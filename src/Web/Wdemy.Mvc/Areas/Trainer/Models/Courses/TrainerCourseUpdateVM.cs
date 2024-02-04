@@ -5,6 +5,7 @@ namespace Wdemy.Mvc.Areas.Trainer.Models.Courses
 {
     public class TrainerCourseUpdateVM
     {
+        public Guid Id { get; set; }
         public string Name { get; set; } = null!;
         public string? Description { get; set; }
 

@@ -2,7 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Wdemy.Application.Dtos.Course;
 using Wdemy.Application.Interfaces.Services;
-using Wdemy.Mvc.Areas.Trainer.Models.Course;
+using Wdemy.Mvc.Areas.Trainer.Models.Courses;
+using Wdemy.Mvc.Areas.Trainer.Models.Lessons;
+using Wdemy.Mvc.Areas.Trainer.Models.Sections;
+using Wdemy.Mvc.Areas.Trainer.Models.Videos;
 
 namespace Wdemy.Mvc.Areas.Trainer.Controllers
 {
@@ -22,6 +25,7 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
             var allCourses = await _courseService.GetAllAsync();
             var allCoursesListVM = allCourses.Data.Select(c => new TrainerCourseListVM
             {
+                Id = c.Id,
                 Name = c.Name,
                 StudentCount = c.StudentCount,
                 TotalParts = c.TotalParts,
@@ -59,8 +63,25 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
         public async Task<IActionResult> Update(Guid id)
         {
             var course = await _courseService.GetByIdAsync(id);
-            var courseEditVM = _mapper.Map<TrainerCourseUpdateVM>(course.Data);
-            return View(courseEditVM);
+            var courseUpdateVM = new TrainerCourseUpdateVM
+            {
+                Id = course.Data.Id,
+                Name = course.Data.Name,
+                Description = course.Data.Description,
+                Sections = course.Data.Sections.Select(s => new TrainerSectionUpdateVM
+                {
+                    SectionName = s.Name,
+                    Lessons = s.Lessons.Select(l => new TrainerLessonUpdateVM
+                    {
+                        Name = l.Name,
+                        Video = new TrainerVideoUpdateVM { 
+                            VideoData = l.Video.VideoData 
+                        }
+                        
+                    }).ToList()
+                }).ToList()
+            };
+            return View(courseUpdateVM);
         }
 
 

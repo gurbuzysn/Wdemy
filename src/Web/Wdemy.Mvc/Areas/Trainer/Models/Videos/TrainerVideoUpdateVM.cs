@@ -2,6 +2,6 @@
 {
     public class TrainerVideoUpdateVM
     {
-        public IFormFile Video { get; set; } = null!;
+        public byte[] VideoData { get; set; } = null!;
     }
 }

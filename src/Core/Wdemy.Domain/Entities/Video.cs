@@ -9,7 +9,7 @@ namespace Wdemy.Domain.Entities
 {
     public class Video : AuditableEntity
     {
-        public string Url { get; set; } = null!;
+        public byte[] VideoData { get; set; } = null!;
         public TimeSpan Duration { get; set; }
         public Guid LessonId { get; set; }
 

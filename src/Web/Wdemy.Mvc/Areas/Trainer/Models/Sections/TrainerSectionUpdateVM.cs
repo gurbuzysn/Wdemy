@@ -5,7 +5,7 @@ namespace Wdemy.Mvc.Areas.Trainer.Models.Sections
 {
     public class TrainerSectionUpdateVM
     {
-        public string Name { get; set; } = null!;
+        public string SectionName { get; set; } = null!;
 
         public List<TrainerLessonUpdateVM> Lessons { get; set; } = null!;
     }
