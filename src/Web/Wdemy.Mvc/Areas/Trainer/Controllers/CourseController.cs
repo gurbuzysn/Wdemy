@@ -63,18 +63,27 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
             return View(courseUpdateVM);
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> CreateSection(TrainerSectionCreateVM sectionVM)
-        //{
-        //    var course = await _courseService.GetByIdAsync(sectionVM.CourseId);
+        [HttpPost]
+        public async Task<IActionResult> CreateSection(TrainerSectionCreateVM sectionVM)
+        {
+            var courseDto = await _courseService.GetByIdAsync(sectionVM.CourseId);
 
-        //    var sectionCreateDto = _mapper.Map<Section>(sectionVM);
+            courseDto.Data.Sections.Add(_mapper.Map<SectionDto>(sectionVM));
 
-        //    course.Data.Sections.Add(sectionCreateDto);
+            try
+            {
+                await _courseService.
+            }
+            catch (Exception)
+            {
 
-        //    return Ok();
+                throw;
+            }
+          
 
-        //}
+            return Ok();
+
+        }
 
 
     }
