@@ -12,7 +12,7 @@ using Wdemy.Persistence.Context;
 namespace Wdemy.Persistence.Data.Migrations
 {
     [DbContext(typeof(WdemyDbContext))]
-    [Migration("20240203220402_First")]
+    [Migration("20240205212607_First")]
     partial class First
     {
         /// <inheritdoc />
@@ -21,6 +21,9 @@ namespace Wdemy.Persistence.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.15")
+                .HasAnnotation("Proxies:ChangeTracking", false)
+                .HasAnnotation("Proxies:CheckEquality", false)
+                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -698,9 +701,9 @@ namespace Wdemy.Persistence.Data.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<string>("Url")
+                    b.Property<byte[]>("VideoData")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varbinary(max)");
 
                     b.HasKey("Id");
 

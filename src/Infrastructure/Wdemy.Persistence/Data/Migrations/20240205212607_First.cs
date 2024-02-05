@@ -400,7 +400,7 @@ namespace Wdemy.Persistence.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Url = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    VideoData = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
                     Duration = table.Column<TimeSpan>(type: "time", nullable: false),
                     LessonId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
