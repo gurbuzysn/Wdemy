@@ -57,6 +57,7 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
         public async Task<IActionResult> Update(Guid id)
         {
             var courseResult = await _courseService.GetByIdAsync(id);
+            ViewBag.Sections = JsonSerializer.Serialize(courseResult.Data.Sections);
 
             if(!courseResult.IsSuccess)
                 return RedirectToAction(nameof(Index));
@@ -80,25 +81,6 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-
-
-        [HttpPost]
-        public async Task<IActionResult> CreateSection(TrainerSectionCreateVM sectionVM)
-        {
-            var courseDto = await _courseService.GetByIdAsync(sectionVM.CourseId);
-
-            courseDto.Data.Sections = new()
-            {
-                new()
-                {
-                    CourseId = sectionVM.CourseId,
-                     Name = sectionVM.SectionName
-                }
-            };
-            
-            var result =  await _courseService.UpdateAsync(courseDto.Data);
-            
-            return Json(result.Data);
-        }
+       
     }
 }

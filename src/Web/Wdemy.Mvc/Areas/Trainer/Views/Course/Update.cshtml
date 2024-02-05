@@ -5,7 +5,7 @@
         <h5 class="card-title">Kursu Düzenle</h5>
 
         <!-- Floating Labels Form -->
-        <form class="row g-3">
+        <form asp-action="Update" class="row g-3">
             <div class="col-md-12">
                 <div class="form-floating">
                     <input asp-for="Name" type="text" class="form-control" placeholder="Kurs Adı">
@@ -29,7 +29,7 @@
                         <a class="btn btn-primary h-50" onclick="showSection()">Bölüm Ekle <span><i class="bi bi-plus-lg"></i></span></a>
                     </div>
 
-                    <input id="sectionList" hidden />
+                    <input id="sectionList" name="sectionList" value="@ViewBag.Sections" hidden />
 
                     <div class="row" id="sectionSubmit" hidden>
                         <div class="d-flex gap-3 align-items-center">

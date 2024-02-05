@@ -84,7 +84,7 @@ namespace Wdemy.Application.Services
 
             try
             {
-                await _courseRepository.UpdateAsync(course);
+                await _courseRepository.UpdateAsync(updatedCourse);
             }
             catch (Exception)
             {
