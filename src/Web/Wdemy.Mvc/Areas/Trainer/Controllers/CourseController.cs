@@ -53,8 +53,12 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
         [HttpGet]
         public async Task<IActionResult> Update(Guid id)
         {
-            var course = await _courseService.GetByIdAsync(id);
-            var courseUpdateVM = _mapper.Map<TrainerCourseUpdateVM>(course.Data);
+            var courseResult = await _courseService.GetByIdAsync(id);
+
+            if(!courseResult.IsSuccess)
+                return RedirectToAction(nameof(Index));
+
+            var courseUpdateVM = _mapper.Map<TrainerCourseUpdateVM>(courseResult.Data);
             
             return View(courseUpdateVM);
         }
@@ -69,7 +73,7 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
         //    course.Data.Sections.Add(sectionCreateDto);
 
         //    return Ok();
-            
+
         //}
 
 
