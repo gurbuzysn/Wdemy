@@ -4,17 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Wdemy.Application.Dtos.Videos;
+using Wdemy.Application.Dtos.Students;
 using Wdemy.Domain.Entities;
 
 namespace Wdemy.Application.Profiles
 {
-    public class VideoProfile : Profile
+    public class StudentProfile : Profile
     {
-        public VideoProfile()
+        public StudentProfile()
         {
-            //CreateMap<VideoCreateDto, Video>();
-            CreateMap<Video, VideoDto>().ReverseMap();
+            CreateMap<Student, StudentDto>().ReverseMap();
         }
     }
 }
