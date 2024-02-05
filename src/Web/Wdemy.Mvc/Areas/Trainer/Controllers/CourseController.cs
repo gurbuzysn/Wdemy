@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 using Wdemy.Application.Constant;
 using Wdemy.Application.Dtos.Course;
 using Wdemy.Application.Dtos.Sections;
@@ -64,6 +65,22 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
             
             return View(courseUpdateVM);
         }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Update(TrainerCourseUpdateVM trainerCourseUpdateVM, IFormCollection collection)
+        {
+            List<TrainerSectionUpdateVM> sectionList = JsonSerializer.Deserialize<List<TrainerSectionUpdateVM>>(collection["sectionList"]);
+
+            trainerCourseUpdateVM.Sections = sectionList;
+
+           var courseUpdateDto = _mapper.Map<CourseDto>(trainerCourseUpdateVM);
+
+            var result = await _courseService.UpdateAsync(courseUpdateDto);
+
+            return RedirectToAction(nameof(Index));
+        }
+
 
         [HttpPost]
         public async Task<IActionResult> CreateSection(TrainerSectionCreateVM sectionVM)
