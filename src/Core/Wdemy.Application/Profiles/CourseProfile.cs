@@ -23,6 +23,11 @@ namespace Wdemy.Application.Profiles
             CreateMap<Course, CourseDto>()
                 .ForMember(dest => dest.Sections, opt => opt.MapFrom(src => src.Sections))
                 .ForMember(dest => dest.Students, opt => opt.MapFrom(src => src.Students));
+
+
+            CreateMap<CourseDto, Course>()
+                .ForMember(dest => dest.Sections, opt => opt.MapFrom(src => src.Sections))
+                .ForMember(dest => dest.Students, opt => opt.MapFrom(src => src.Students));
         }
     }
 }

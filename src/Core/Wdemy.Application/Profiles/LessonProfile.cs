@@ -15,7 +15,7 @@ namespace Wdemy.Application.Profiles
         {
             //CreateMap<LessonCreateDto, Lesson>();
             CreateMap<Lesson, LessonDto>()
-                .ForMember(dest => dest.Video, opt => opt.MapFrom(src => src.Video));
+                .ForMember(dest => dest.Video, opt => opt.MapFrom(src => src.Video)).ReverseMap();
         }
     }
 }

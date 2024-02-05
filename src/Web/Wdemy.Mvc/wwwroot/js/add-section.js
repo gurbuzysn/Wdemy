@@ -15,10 +15,16 @@ async function submitSection(courseId)
             CourseId: courseId 
         }
 
-       return $.ajax({
-            url: "/Trainer/Course/CreateSection",
-           data: { sectionVM: sectionVM }
-        })
+       $.ajax({
+           url: "/Trainer/Course/CreateSection",
+           method: "POST",
+           data: { sectionVM: sectionVM },
+           
+           success: function (data) {
+               console.log(data);
+           }
+       })
+
 
     }
 

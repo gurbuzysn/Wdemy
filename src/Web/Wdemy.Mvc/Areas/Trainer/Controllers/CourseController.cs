@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Wdemy.Application.Constant;
 using Wdemy.Application.Dtos.Course;
 using Wdemy.Application.Dtos.Sections;
 using Wdemy.Application.Interfaces.Services;
+using Wdemy.Application.Utilities.Result.Concrete;
 using Wdemy.Domain.Entities;
 using Wdemy.Mvc.Areas.Trainer.Models.Courses;
 using Wdemy.Mvc.Areas.Trainer.Models.Lessons;
@@ -68,23 +70,22 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
         {
             var courseDto = await _courseService.GetByIdAsync(sectionVM.CourseId);
 
-            courseDto.Data.Sections.Add(_mapper.Map<SectionDto>(sectionVM));
 
-            try
+            courseDto.Data.Sections = new()
             {
-                await _courseService.
-            }
-            catch (Exception)
-            {
+                new()
+                {
+                    CourseId = sectionVM.CourseId,
+                     Name = sectionVM.SectionName
+                }
+            };
 
-                throw;
-            }
-          
 
-            return Ok();
 
+              var result =  await _courseService.UpdateAsync(courseDto.Data);
+
+
+            return Json(result.Data);
         }
-
-
     }
 }

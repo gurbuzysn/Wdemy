@@ -74,10 +74,48 @@ namespace Wdemy.Application.Services
 
         public async Task<IDataResult<CourseDto>> UpdateAsync(CourseDto courseDto)
         {
-            var updatedCourse = _mapper.Map<Course>(courseDto);
-            await _courseRepository.UpdateAsync(updatedCourse);
+            var course = _courseRepository.GetByIdAsync(courseDto.Id).Result;
+            if (course == null)
+            {
+                return new ErrorDataResult<CourseDto>(Messages.CourseNotFound);
+            }
 
-            return new SuccessDataResult<CourseDto>(_mapper.Map<CourseDto>(updatedCourse), Messages.UpdateSuccess);
+
+            //course.Sections = courseDto.Sections.Select(x => new Section() 
+            //{
+            //     Name = x.Name,
+            //     CourseId = x.CourseId,
+            //     CreatedDate = DateTime.Now,
+            //     CreatedBy = courseDto.TrainerId,
+            //     Status = Status.Added,
+            //}).ToList();
+
+            //course.Status = Status.Modified;
+            //course.ModifiedDate = DateTime.Now;
+            //course.ModifiedBy = courseDto.TrainerId;
+
+            try
+            {
+                var updatedCourse = _mapper.Map(courseDto, course);
+            }
+            catch (Exception ex)
+            {
+                 Console.WriteLine(ex.Message);
+            }
+
+
+
+
+            try
+            {
+                await _courseRepository.UpdateAsync(course);
+            }
+            catch (Exception)
+            {
+                return new ErrorDataResult<CourseDto>(Messages.AddFail);
+            }
+
+            return new SuccessDataResult<CourseDto>(_mapper.Map<CourseDto>(course), Messages.UpdateSuccess);
         }
     }
 }
