@@ -8,18 +8,20 @@
         <form class="row g-3">
             <div class="col-md-12">
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingName" placeholder="Your Name">
-                    <label for="floatingName">Kurs Adı</label>
+                    <input asp-for="Name" type="text" class="form-control" placeholder="Kurs Adı">
+                    <label asp-for="Name">Kurs Adı</label>
+                    <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
             </div>
-            
+
             <div class="col-12">
                 <div class="form-floating">
-                    <textarea class="form-control" placeholder="Address" id="floatingTextarea" style="height: 100px;"></textarea>
-                    <label for="floatingTextarea">Kurs Açıklaması</label>
+                    <textarea asp-for="Description" class="form-control" placeholder="Kurs Açıklaması" id="floatingTextarea" style="height: 100px;"></textarea>
+                    <label asp-for="Description">Kurs Açıklaması</label>
+                    <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
             </div>
-            
+
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
@@ -28,8 +30,7 @@
                     </div>
 
 
-                    <div class="row" id="sectionSubmit" hidden >
-                        <form>
+                    <div class="row" id="sectionSubmit" hidden>
                             <div class="d-flex gap-3 align-items-center">
                                 <div class="col-md-6 ">
                                     <div class="form-floating">
@@ -38,36 +39,30 @@
                                     </div>
                                 </div>
                                 <div class="col-md-2">
-                                    <a class="btn btn-success" onclick="submitSection('@Model.Id')" ><i class="bi bi-plus-lg"></i></a>
+                                    <a class="btn btn-success" onclick="submitSection('@Model.Id')"><i class="bi bi-plus-lg"></i></a>
                                 </div>
                             </div>
-                            
-                        </form>
                     </div>
-
-
-
-                    <!-- Accordion without outline borders -->
                     <div class="accordion accordion-flush" id="accordionFlushExample">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="flush-headingOne">
-                                <button class="accordion-button collapsed fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                    Giriş
-                                </button>
-                            </h2>
-                            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body">Ders 1</div>
+                        @foreach (var sectionItem in Model.Sections)
+                        {
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingOne">
+                                    <button class="accordion-button collapsed fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                        @sectionItem.SectionName
+                                    </button>
+                                </h2>
+                                @foreach (var lesson in sectionItem.Lessons)
+                                {
+                                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">@lesson.Name</div>
+                                    </div>
+                                }
                             </div>
-                            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body">Ders 2</div>
-                            </div>
-                        </div>
-                    </div><!-- End Accordion without outline borders -->
-
+                        }
+                    </div>
                 </div>
             </div>
-
-
             <div class="text-center">
                 <button type="reset" class="btn btn-secondary">Listeye Dön</button>
                 <button type="submit" class="btn btn-primary">Kaydet</button>
@@ -78,5 +73,5 @@
 </div>
 @section Scripts{
     <script src="~/js/add-section.js"></script>
-    
+
 }

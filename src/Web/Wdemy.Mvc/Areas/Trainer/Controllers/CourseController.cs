@@ -70,7 +70,6 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
         {
             var courseDto = await _courseService.GetByIdAsync(sectionVM.CourseId);
 
-
             courseDto.Data.Sections = new()
             {
                 new()
@@ -79,12 +78,9 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
                      Name = sectionVM.SectionName
                 }
             };
-
-
-
-              var result =  await _courseService.UpdateAsync(courseDto.Data);
-
-
+            
+            var result =  await _courseService.UpdateAsync(courseDto.Data);
+            
             return Json(result.Data);
         }
     }

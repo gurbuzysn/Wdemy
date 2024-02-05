@@ -79,32 +79,8 @@ namespace Wdemy.Application.Services
             {
                 return new ErrorDataResult<CourseDto>(Messages.CourseNotFound);
             }
-
-
-            //course.Sections = courseDto.Sections.Select(x => new Section() 
-            //{
-            //     Name = x.Name,
-            //     CourseId = x.CourseId,
-            //     CreatedDate = DateTime.Now,
-            //     CreatedBy = courseDto.TrainerId,
-            //     Status = Status.Added,
-            //}).ToList();
-
-            //course.Status = Status.Modified;
-            //course.ModifiedDate = DateTime.Now;
-            //course.ModifiedBy = courseDto.TrainerId;
-
-            try
-            {
-                var updatedCourse = _mapper.Map(courseDto, course);
-            }
-            catch (Exception ex)
-            {
-                 Console.WriteLine(ex.Message);
-            }
-
-
-
+            
+            var updatedCourse = _mapper.Map(courseDto, course);
 
             try
             {
