@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Wdemy.Domain.Enums;
+﻿using Wdemy.Domain.Enums;
 
-namespace Wdemy.Application.Dtos.Students
+namespace Wdemy.Mvc.Areas.Trainer.Models.Students
 {
-    public class StudentDto
+    public class TrainerStudentListVM
     {
         public Guid Id { get; set; }
         public string FirstName { get; set; } = null!;
