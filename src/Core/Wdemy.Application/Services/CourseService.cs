@@ -68,16 +68,16 @@ namespace Wdemy.Application.Services
             throw new NotImplementedException();
         }
 
-        public async Task<IDataResult<List<Course>>> GetAllAsync()
+        public async Task<IDataResult<List<CourseDto>>> GetAllAsync()
         {
             var allCourses = await _courseRepository.GetAllAsync();
             
             if(allCourses == null)
             {
-                return new ErrorDataResult<List<Course>>(Messages.CourseNotFound);
+                return new ErrorDataResult<List<CourseDto>>(Messages.CourseNotFound);
             }
 
-            return new SuccessDataResult<List<Course>>(allCourses, Messages.ListedSuccess);
+            return new SuccessDataResult<List<CourseDto>>(_mapper.Map<List<CourseDto>>(allCourses), Messages.ListedSuccess);
         }
     }
 }

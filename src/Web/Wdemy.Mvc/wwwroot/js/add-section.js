@@ -15,7 +15,7 @@ async function submitSection(courseId)
             CourseId: courseId 
         }
 
-       return $ajax({
+       return $.ajax({
             url: "/Trainer/Course/CreateSection",
            data: { sectionVM: sectionVM }
         })

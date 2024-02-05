@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Wdemy.Application.Dtos.Course;
+using Wdemy.Application.Dtos.Sections;
 using Wdemy.Application.Interfaces.Services;
+using Wdemy.Domain.Entities;
 using Wdemy.Mvc.Areas.Trainer.Models.Courses;
 using Wdemy.Mvc.Areas.Trainer.Models.Lessons;
 using Wdemy.Mvc.Areas.Trainer.Models.Sections;
@@ -23,6 +25,12 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
         public async Task<IActionResult> Index()
         {
             var allCourses = await _courseService.GetAllAsync();
+
+
+
+
+
+
             var allCoursesListVM = allCourses.Data.Select(c => new TrainerCourseListVM
             {
                 Id = c.Id,
@@ -89,12 +97,11 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
         {
             var course = await _courseService.GetByIdAsync(sectionVM.CourseId);
 
-            course.Data.Sections.Add(new TrainerSectionCreateVM
-            {
-                SectionName = sectionVM.SectionName,
-                Lessons = new List<LessonDto>()
-            });
+            var sectionCreateDto = _mapper.Map<Section>(sectionVM);
 
+            course.Data.Sections.Add(sectionCreateDto);
+
+            return Ok();
             
         }
 

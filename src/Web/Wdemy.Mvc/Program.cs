@@ -9,6 +9,8 @@ using Wdemy.Application.Interfaces.Repository;
 using Wdemy.Persistence.Interfaces.Services;
 using Wdemy.Persistence.Repositories;
 using Wdemy.Persistence.Services;
+using Wdemy.Mvc.Extensions;
+using Wdemy.Application.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +18,11 @@ builder.Services.AddDbContext<WdemyDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString(WdemyDbContext.ConnectionName));
 });
+
+builder.Services.AddBusinessServices()
+                .AddMvcServices();
+
+
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 {
@@ -33,7 +40,6 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
             .AddEntityFrameworkStores<WdemyDbContext>()
             .AddClaimsPrincipalFactory<ApplicationUserClaimsPrincipalFactory>();
 
-builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
@@ -53,13 +59,11 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
-builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 builder.Services.AddScoped<ITrainerRepository, TrainerRepository>();
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
-builder.Services.AddScoped<ICourseService, CourseService>();
 builder.Services.AddScoped<ICourseRepository, CourseRepository>();
-builder.Services.AddScoped<ITrainerService, TrainerService>();
+builder.Services.AddScoped<IAccountService, AccountService>();
 
 
 // Add services to the container.
