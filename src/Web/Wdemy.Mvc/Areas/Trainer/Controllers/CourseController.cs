@@ -54,39 +54,23 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
         public async Task<IActionResult> Update(Guid id)
         {
             var course = await _courseService.GetByIdAsync(id);
-            var courseUpdateVM = new TrainerCourseUpdateVM
-            {
-                Id = course.Data.Id,
-                Name = course.Data.Name,
-                Description = course.Data.Description,
-                Sections = course.Data.Sections.Select(s => new TrainerSectionUpdateVM
-                {
-                    SectionName = s.Name,
-                    Lessons = s.Lessons.Select(l => new TrainerLessonUpdateVM
-                    {
-                        Name = l.Name,
-                        Video = new TrainerVideoUpdateVM { 
-                            VideoData = l.Video.VideoData 
-                        }
-                        
-                    }).ToList()
-                }).ToList()
-            };
+            var courseUpdateVM = _mapper.Map<TrainerCourseUpdateVM>(course.Data);
+            
             return View(courseUpdateVM);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateSection(TrainerSectionCreateVM sectionVM)
-        {
-            var course = await _courseService.GetByIdAsync(sectionVM.CourseId);
+        //[HttpPost]
+        //public async Task<IActionResult> CreateSection(TrainerSectionCreateVM sectionVM)
+        //{
+        //    var course = await _courseService.GetByIdAsync(sectionVM.CourseId);
 
-            var sectionCreateDto = _mapper.Map<Section>(sectionVM);
+        //    var sectionCreateDto = _mapper.Map<Section>(sectionVM);
 
-            course.Data.Sections.Add(sectionCreateDto);
+        //    course.Data.Sections.Add(sectionCreateDto);
 
-            return Ok();
+        //    return Ok();
             
-        }
+        //}
 
 
     }
