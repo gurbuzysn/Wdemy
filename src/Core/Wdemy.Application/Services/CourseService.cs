@@ -71,5 +71,13 @@ namespace Wdemy.Application.Services
 
             return new SuccessDataResult<List<CourseDto>>(_mapper.Map<List<CourseDto>>(allCourses), Messages.ListedSuccess);
         }
+
+        public async Task<IDataResult<CourseDto>> UpdateAsync(CourseDto courseDto)
+        {
+            var updatedCourse = _mapper.Map<Course>(courseDto);
+            await _courseRepository.UpdateAsync(updatedCourse);
+
+            return new SuccessDataResult<CourseDto>(_mapper.Map<CourseDto>(updatedCourse), Messages.UpdateSuccess);
+        }
     }
 }
