@@ -9,6 +9,6 @@ namespace Wdemy.Domain.Entities
 {
     public class Trainer : BaseUser
     {
-        public ICollection<Course> Courses { get; set; } = new HashSet<Course>();
+        public virtual ICollection<Course> Courses { get; set; } = new HashSet<Course>();
     }
 }
