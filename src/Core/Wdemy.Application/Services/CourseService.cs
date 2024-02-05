@@ -28,28 +28,20 @@ namespace Wdemy.Application.Services
             _trainerService = trainerService;
         }
 
-        public async Task<IDataResult<Course>> GetByIdAsync(Guid id)
+        public async Task<IDataResult<CourseDto>> GetByIdAsync(Guid id)
         {
             var course = await _courseRepository.GetByIdAsync(id);
             if (course == null)
             {
-                return new ErrorDataResult<Course>(Messages.CourseNotFound);
+                return new ErrorDataResult<CourseDto>(Messages.CourseNotFound);
             }
-            return new SuccessDataResult<Course>(course, Messages.FoundSuccess);
+            return new SuccessDataResult<CourseDto>(_mapper.Map<CourseDto>(course), Messages.FoundSuccess);
 
         }
 
-        public async Task<IDataResult<Course>> AddAsync(CourseCreateDto courseCreateDto)
+        public async Task<IDataResult<CourseDto>> AddAsync(CourseCreateDto courseCreateDto)
         {
-            Course course = new Course
-            {
-                Name = courseCreateDto.Name,
-                TrainerId = courseCreateDto.TrainerId,
-                Trainer = (await _trainerService.GetByIdAsync(courseCreateDto.TrainerId)).Data,
-                Status = Status.Added,
-                CreatedBy = courseCreateDto.TrainerId,
-                CreatedDate = DateTime.Now,
-            };
+            var course = _mapper.Map<Course>(courseCreateDto);  
 
             try
             {
@@ -57,10 +49,10 @@ namespace Wdemy.Application.Services
             }
             catch (Exception)
             {
-                return new ErrorDataResult<Course>(Messages.AddFail);
+                return new ErrorDataResult<CourseDto>(Messages.AddFail);
             }
 
-            return new SuccessDataResult<Course>(course, Messages.AddSuccess);
+            return new SuccessDataResult<CourseDto>(_mapper.Map<CourseDto>(course), Messages.AddSuccess);
         }
 
         public Task<IResult> DeleteAsync(Guid id)

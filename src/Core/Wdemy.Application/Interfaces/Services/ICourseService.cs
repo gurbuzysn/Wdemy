@@ -11,9 +11,9 @@ namespace Wdemy.Application.Interfaces.Services
 {
     public interface ICourseService
     {
-        Task<IDataResult<Course>> GetByIdAsync(Guid id);
+        Task<IDataResult<CourseDto>> GetByIdAsync(Guid id);
         Task<IDataResult<List<CourseDto>>> GetAllAsync();
-        Task<IDataResult<Course>> AddAsync(CourseCreateDto courseCreateDto);
+        Task<IDataResult<CourseDto>> AddAsync(CourseCreateDto courseCreateDto);
         Task<IResult> DeleteAsync(Guid id);
     }
 }
