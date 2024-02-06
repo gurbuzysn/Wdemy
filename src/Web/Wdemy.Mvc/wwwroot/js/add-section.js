@@ -3,15 +3,12 @@
 
 
 function showSection() {
-    let sectionListData = document.getElementById("sectionList").value;
-    sectionList = JSON.parse(sectionListData);
-    
     let section = document.getElementById("sectionSubmit");
     section.removeAttribute("hidden");
 }
 async function submitSection(courseId) {
     let sectionName = document.getElementById("SectionName").value;
-
+    sectionList = [];
 
 
     console.log(courseId);

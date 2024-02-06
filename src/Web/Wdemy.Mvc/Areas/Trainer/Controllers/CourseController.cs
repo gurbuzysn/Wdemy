@@ -57,13 +57,13 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
         public async Task<IActionResult> Update(Guid id)
         {
             var courseResult = await _courseService.GetByIdAsync(id);
-            ViewBag.Sections = JsonSerializer.Serialize(courseResult.Data.Sections);
+            
 
             if(!courseResult.IsSuccess)
                 return RedirectToAction(nameof(Index));
 
             var courseUpdateVM = _mapper.Map<TrainerCourseUpdateVM>(courseResult.Data);
-            
+
             return View(courseUpdateVM);
         }
 
@@ -71,6 +71,7 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
         [HttpPost]
         public async Task<IActionResult> Update(TrainerCourseUpdateVM trainerCourseUpdateVM, IFormCollection collection)
         {
+
             List<TrainerSectionUpdateVM> sectionList = JsonSerializer.Deserialize<List<TrainerSectionUpdateVM>>(collection["sectionList"]);
 
             trainerCourseUpdateVM.Sections = sectionList;

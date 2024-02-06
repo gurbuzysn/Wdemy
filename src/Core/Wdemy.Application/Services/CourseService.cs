@@ -12,6 +12,7 @@ using Wdemy.Application.Interfaces.Repository;
 using Wdemy.Application.Utilities.Result.Concrete;
 using Wdemy.Application.Constant;
 using Wdemy.Domain.Enums;
+using Wdemy.Application.Dtos.Sections;
 
 namespace Wdemy.Application.Services
 {
@@ -75,6 +76,10 @@ namespace Wdemy.Application.Services
         public async Task<IDataResult<CourseDto>> UpdateAsync(CourseDto courseDto)
         {
             var course = _courseRepository.GetByIdAsync(courseDto.Id).Result;
+
+            //var sectionDtoList = _mapper.Map<List<SectionDto>>(course.Sections);
+            //courseDto.Sections.AddRange(sectionDtoList);
+
             if (course == null)
             {
                 return new ErrorDataResult<CourseDto>(Messages.CourseNotFound);

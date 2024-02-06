@@ -1,5 +1,7 @@
 ﻿@model TrainerCourseUpdateVM
 
+@ViewData["Title"] = "Kursu Düzenle"
+
 <div class="card">
     <div class="card-body">
         <h5 class="card-title">Kursu Düzenle</h5>
@@ -22,6 +24,8 @@
                 </div>
             </div>
 
+            
+
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
@@ -29,7 +33,7 @@
                         <a class="btn btn-primary h-50" onclick="showSection()">Bölüm Ekle <span><i class="bi bi-plus-lg"></i></span></a>
                     </div>
 
-                    <input id="sectionList" name="sectionList" value="@ViewBag.Sections" hidden />
+                    <input id="sectionList" name="sectionList" hidden />
 
                     <div class="row" id="sectionSubmit" hidden>
                         <div class="d-flex gap-3 align-items-center">
