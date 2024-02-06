@@ -1,13 +1,13 @@
 ﻿@model TrainerCourseUpdateVM
-
-@ViewData["Title"] = "Kursu Düzenle"
+@{
+    ViewData["Title"] = "Kursu Düzenle";
+}
 
 <div class="card">
     <div class="card-body">
         <h5 class="card-title">Kursu Düzenle</h5>
-
         <!-- Floating Labels Form -->
-        <form asp-action="Update" class="row g-3">
+        <form asp-action="Update" class="row g-3" enctype="multipart/form-data">
             <div class="col-md-12">
                 <div class="form-floating">
                     <input asp-for="Name" type="text" class="form-control" placeholder="Kurs Adı">
@@ -15,7 +15,6 @@
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
             </div>
-
             <div class="col-12">
                 <div class="form-floating">
                     <textarea asp-for="Description" class="form-control" placeholder="Kurs Açıklaması" id="floatingTextarea" style="height: 100px;"></textarea>
@@ -23,14 +22,12 @@
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
             </div>
-            <input asp-for="TrainerId" type="text" class="form-control" />
             <input value="@ViewBag.Sections" id="sectionData" hidden />
-
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
                         <h5 class="card-title">Bölümler</h5>
-                        <a class="btn btn-primary h-50" onclick="showSection()">Bölüm Ekle <span><i class="bi bi-plus-lg"></i></span></a>
+                        <a class="btn btn-primary h-50" onclick="showSection()"><span><i class="bi bi-plus-lg"></i>Bölüm Ekle </span></a>
                     </div>
 
                     <input id="sectionList" name="sectionList" hidden />
@@ -48,13 +45,7 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
                     <div class="accordion accordion-flush" id="accordionFlushExample">
-
-
                         @foreach (var sectionItem in Model.Sections)
                         {
                             <div class="accordion-item">
@@ -64,24 +55,33 @@
                                     </button>
                                 </h2>
                                 <div id="flush-collapse-@sectionItem.Id" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                                    <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+                                    <div class="accordion-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-floating">
+                                                    <input asp-for="LessonName" type="text" class="form-control" placeholder="Ders Adı">
+                                                    <label asp-for="LessonName">Ders Adı</label>
+                                                    <span asp-validation-for="LessonName" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <label asp-for="VideoData" class="col-sm-2 col-form-label">Video Yükle</label>
+                                                    <div class="col">
+                                                        <input asp-for="VideoData" class="form-control" type="file">
+                                                    </div>
+                                                </div>
+                                                <span asp-validation-for="VideoData" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div id="flush-collapse-@sectionItem.Id" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                                    <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+                                    <div class="accordion-body">Deneme</div>
                                 </div>
                             </div>
                         }
-
-
                     </div>
-
-
-
-
-
-
-
-
                 </div>
             </div>
             <div class="text-center">
@@ -89,10 +89,8 @@
                 <button type="submit" class="btn btn-primary">Kaydet</button>
             </div>
         </form><!-- End floating Labels Form -->
-
     </div>
 </div>
-@section Scripts{
+@section Scripts {
     <script src="~/js/add-section.js"></script>
-
 }

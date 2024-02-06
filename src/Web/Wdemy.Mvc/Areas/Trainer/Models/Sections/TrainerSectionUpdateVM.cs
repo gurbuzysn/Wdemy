@@ -1,5 +1,4 @@
 ﻿using Wdemy.Domain.Entities;
-using Wdemy.Mvc.Areas.Trainer.Models.Lessons;
 using Wdemy.Mvc.Areas.Trainer.Models.Videos;
 
 namespace Wdemy.Mvc.Areas.Trainer.Models.Sections
