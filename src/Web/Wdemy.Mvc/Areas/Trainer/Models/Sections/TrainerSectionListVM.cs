@@ -1,5 +1,6 @@
 ﻿using Wdemy.Application.Dtos.Lessons;
 using Wdemy.Mvc.Areas.Trainer.Models.Lessons;
+using Wdemy.Mvc.Areas.Trainer.Models.Videos;
 
 namespace Wdemy.Mvc.Areas.Trainer.Models.Sections
 {
@@ -11,6 +12,6 @@ namespace Wdemy.Mvc.Areas.Trainer.Models.Sections
         public TimeSpan TotalDuration { get; set; }
         public Guid CourseId { get; set; }
 
-        public List<TrainerLessonListVM> Lessons { get; set; } = new();
+        public List<TrainerVideoListVM> Videos { get; set; } = new();
     }
 }

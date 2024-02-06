@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Wdemy.Application.Dtos.Lessons;
+using Wdemy.Application.Dtos.Videos;
 using Wdemy.Domain.Entities;
 
 namespace Wdemy.Application.Dtos.Sections
@@ -16,6 +17,6 @@ namespace Wdemy.Application.Dtos.Sections
         public TimeSpan TotalDuration { get; set; }
         public Guid CourseId { get; set; }
 
-        public List<LessonDto> Lessons { get; set; } = new();
+        public List<VideoDto> Videos { get; set; } = new();
     }
 }

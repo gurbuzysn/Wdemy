@@ -16,6 +16,6 @@ namespace Wdemy.Domain.Entities
 
 
         public virtual Course Course { get; set; } = null!;
-        public virtual ICollection<Lesson> Lessons { get; set; } = new HashSet<Lesson>();
+        public virtual ICollection<Video> Videos { get; set; } = new HashSet<Video>();
     }
 }

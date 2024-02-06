@@ -12,8 +12,8 @@ using Wdemy.Persistence.Context;
 namespace Wdemy.Persistence.Data.Migrations
 {
     [DbContext(typeof(WdemyDbContext))]
-    [Migration("20240205212607_First")]
-    partial class First
+    [Migration("20240206090721_InitialCreatea")]
+    partial class InitialCreatea
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -374,54 +374,6 @@ namespace Wdemy.Persistence.Data.Migrations
                     b.ToTable("Courses");
                 });
 
-            modelBuilder.Entity("Wdemy.Domain.Entities.Lesson", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("DeletedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("DeletedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DocumentUri")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<TimeSpan>("Duration")
-                        .HasColumnType("time");
-
-                    b.Property<Guid>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("SectionId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SectionId");
-
-                    b.ToTable("Lessons");
-                });
-
             modelBuilder.Entity("Wdemy.Domain.Entities.Section", b =>
                 {
                     b.Property<Guid>("Id")
@@ -686,17 +638,25 @@ namespace Wdemy.Persistence.Data.Migrations
                     b.Property<DateTime>("DeletedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("DocumentUri")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<TimeSpan>("Duration")
                         .HasColumnType("time");
-
-                    b.Property<Guid>("LessonId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("ModifiedBy")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("SectionId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -707,8 +667,7 @@ namespace Wdemy.Persistence.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LessonId")
-                        .IsUnique();
+                    b.HasIndex("SectionId");
 
                     b.ToTable("Video");
                 });
@@ -775,17 +734,6 @@ namespace Wdemy.Persistence.Data.Migrations
                     b.Navigation("Trainer");
                 });
 
-            modelBuilder.Entity("Wdemy.Domain.Entities.Lesson", b =>
-                {
-                    b.HasOne("Wdemy.Domain.Entities.Section", "Section")
-                        .WithMany("Lessons")
-                        .HasForeignKey("SectionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Section");
-                });
-
             modelBuilder.Entity("Wdemy.Domain.Entities.Section", b =>
                 {
                     b.HasOne("Wdemy.Domain.Entities.Course", "Course")
@@ -828,13 +776,13 @@ namespace Wdemy.Persistence.Data.Migrations
 
             modelBuilder.Entity("Wdemy.Domain.Entities.Video", b =>
                 {
-                    b.HasOne("Wdemy.Domain.Entities.Lesson", "Lesson")
-                        .WithOne("Video")
-                        .HasForeignKey("Wdemy.Domain.Entities.Video", "LessonId")
+                    b.HasOne("Wdemy.Domain.Entities.Section", "Section")
+                        .WithMany("Videos")
+                        .HasForeignKey("SectionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Lesson");
+                    b.Navigation("Section");
                 });
 
             modelBuilder.Entity("Wdemy.Domain.Entities.Category", b =>
@@ -849,15 +797,9 @@ namespace Wdemy.Persistence.Data.Migrations
                     b.Navigation("Students");
                 });
 
-            modelBuilder.Entity("Wdemy.Domain.Entities.Lesson", b =>
-                {
-                    b.Navigation("Video")
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Wdemy.Domain.Entities.Section", b =>
                 {
-                    b.Navigation("Lessons");
+                    b.Navigation("Videos");
                 });
 
             modelBuilder.Entity("Wdemy.Domain.Entities.SubCategory", b =>

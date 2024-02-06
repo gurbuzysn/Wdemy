@@ -28,22 +28,13 @@ namespace Wdemy.Mvc.Profiles
             CreateMap<StudentDto, TrainerStudentListVM>();
 
             CreateMap<SectionDto, TrainerSectionListVM>()
-                .ForMember(dest => dest.Lessons, opt => opt.MapFrom(src => src.Lessons));
+                .ForMember(dest => dest.Videos, opt => opt.MapFrom(src => src.Videos));
             CreateMap<SectionDto, TrainerSectionUpdateVM>()
-                .ForMember(dest => dest.Lessons, opt => opt.MapFrom(src => src.Lessons))
+                .ForMember(dest => dest.Videos, opt => opt.MapFrom(src => src.Videos))
                 .ForMember(dest => dest.SectionName, opt => opt.MapFrom(src => src.Name)).ReverseMap();
-
-            CreateMap<LessonDto, TrainerLessonListVM>()
-               .ForMember(dest => dest.Video, opt => opt.MapFrom(src => src.Video));
-            CreateMap<LessonDto, TrainerLessonUpdateVM>()
-              .ForMember(dest => dest.Video, opt => opt.MapFrom(src => src.Video));
 
             CreateMap<VideoDto, TrainerVideoListVM>();
             CreateMap<VideoDto, TrainerVideoUpdateVM>();
-
-
-
-
         }
     }
 }

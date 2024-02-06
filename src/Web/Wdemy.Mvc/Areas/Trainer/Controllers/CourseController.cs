@@ -63,6 +63,7 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
                 return RedirectToAction(nameof(Index));
 
             var courseUpdateVM = _mapper.Map<TrainerCourseUpdateVM>(courseResult.Data);
+            ViewBag.Sections = JsonSerializer.Serialize(courseUpdateVM.Sections);
 
             return View(courseUpdateVM);
         }
@@ -71,12 +72,9 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
         [HttpPost]
         public async Task<IActionResult> Update(TrainerCourseUpdateVM trainerCourseUpdateVM, IFormCollection collection)
         {
-
             List<TrainerSectionUpdateVM> sectionList = JsonSerializer.Deserialize<List<TrainerSectionUpdateVM>>(collection["sectionList"]);
 
             trainerCourseUpdateVM.Sections = sectionList;
-
-            var a = 1;
 
            var courseUpdateDto = _mapper.Map<CourseDto>(trainerCourseUpdateVM);
 
@@ -84,6 +82,5 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-       
     }
 }
