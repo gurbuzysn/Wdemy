@@ -76,6 +76,8 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
 
             trainerCourseUpdateVM.Sections = sectionList;
 
+            var a = 1;
+
            var courseUpdateDto = _mapper.Map<CourseDto>(trainerCourseUpdateVM);
 
             var result = await _courseService.UpdateAsync(courseUpdateDto);
