@@ -21,7 +21,6 @@ public class WdemyDbContext : IdentityDbContext<IdentityUser>
     public DbSet<Subject> Subjects => Set<Subject>();
     public DbSet<Course> Courses => Set<Course>();
     public DbSet<Section> Sections => Set<Section>();
-    public DbSet<Lesson> Lessons => Set<Lesson>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

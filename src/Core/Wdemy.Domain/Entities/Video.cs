@@ -9,10 +9,12 @@ namespace Wdemy.Domain.Entities
 {
     public class Video : AuditableEntity
     {
+        public string Name { get; set; } = null!;
         public byte[] VideoData { get; set; } = null!;
+        public string DocumentUri { get; set; } = null!;
         public TimeSpan Duration { get; set; }
-        public Guid LessonId { get; set; }
+        public Guid SectionId { get; set; }
 
-        public virtual Lesson Lesson { get; set; } = null!;
+        public virtual Section Section { get; set; } = null!;
     }
 }
