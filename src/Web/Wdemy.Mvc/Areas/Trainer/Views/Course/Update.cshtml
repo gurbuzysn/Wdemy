@@ -22,6 +22,9 @@
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
             </div>
+            <div class="col-md-12" hidden>
+                <input asp-for="TrainerId" type="text" class="form-control" placeholder="Kurs Adı">
+            </div>
             <input value="@ViewBag.Sections" id="sectionData" hidden />
             <div class="card">
                 <div class="card-body">
@@ -76,9 +79,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div id="flush-collapse-@sectionItem.Id" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                                    <div class="accordion-body">Deneme</div>
-                                </div>
+                                @foreach (var video in sectionItem.Videos)
+                                {
+                                    <div id="flush-collapse-@sectionItem.Id" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">@video.Name</div>
+                                    </div>
+                                }
                             </div>
                         }
                     </div>

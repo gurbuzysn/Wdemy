@@ -57,7 +57,7 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
         {
             var courseResult = await _courseService.GetByIdAsync(id);
 
-            if(!courseResult.IsSuccess)
+            if (!courseResult.IsSuccess)
                 return RedirectToAction(nameof(Index));
 
             var courseUpdateVM = _mapper.Map<TrainerCourseUpdateVM>(courseResult.Data);
@@ -70,11 +70,59 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
         [HttpPost]
         public async Task<IActionResult> Update(TrainerCourseUpdateVM trainerCourseUpdateVM, IFormCollection collection)
         {
-            List<TrainerSectionUpdateVM> sectionList = JsonSerializer.Deserialize<List<TrainerSectionUpdateVM>>(collection["sectionList"]);
+            if (!ModelState.IsValid)
+            {
+                return View(trainerCourseUpdateVM);
+            }
 
-            trainerCourseUpdateVM.Sections = sectionList;
+            if (!string.IsNullOrEmpty(collection["sectionList"]))
+            {
+                List<TrainerSectionUpdateVM> sectionList = JsonSerializer.Deserialize<List<TrainerSectionUpdateVM>>(collection["sectionList"]);
+                trainerCourseUpdateVM.Sections = sectionList;
+            }
 
-           var courseUpdateDto = _mapper.Map<CourseDto>(trainerCourseUpdateVM);
+            var courseUpdateDto = _mapper.Map<CourseDto>(trainerCourseUpdateVM);
+
+            if (trainerCourseUpdateVM.VideoData != null)
+            {
+                string videoName = trainerCourseUpdateVM.LessonName + "_" + Guid.NewGuid().ToString();
+                string folder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "videos");
+
+                if (!Directory.Exists(folder))
+                {
+                    Directory.CreateDirectory(folder);
+                }
+
+                string filePath = Path.Combine(folder, videoName);
+
+                using (var videoStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await trainerCourseUpdateVM.VideoData.CopyToAsync(videoStream);
+                }
+
+                courseUpdateDto.VideoUri = videoName;
+            }
+
+            if (trainerCourseUpdateVM.Document != null)
+            {
+                string fileName = Guid.NewGuid().ToString();
+
+                string folder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "documents");
+
+                if (!Directory.Exists(folder))
+                {
+                    Directory.CreateDirectory(folder);
+                }
+
+                string filePath = Path.Combine(folder, fileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await trainerCourseUpdateVM.Document.CopyToAsync(fileStream);
+                }
+
+                courseUpdateDto.DocumentUri = fileName;
+            }
 
             var result = await _courseService.UpdateAsync(courseUpdateDto);
 

@@ -10,11 +10,11 @@ namespace Wdemy.Mvc.Areas.Trainer.Models.Courses
         public string Name { get; set; } = null!;
         public string? Description { get; set; }
         public Guid TrainerId { get; set; }
-        public string LessonName { get; set; } = null!;
-        public IFormFile VideoData { get; set; } = null!;
+        public string? LessonName { get; set; }
+        public IFormFile? VideoData { get; set; }
         public IFormFile? Document { get; set; }
 
         [BindProperty]
-        public List<TrainerSectionUpdateVM> Sections { get; set; } = null!;
+        public List<TrainerSectionUpdateVM>? Sections { get; set; }
     }
 }
