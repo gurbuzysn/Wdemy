@@ -13,8 +13,8 @@ namespace Wdemy.Mvc.Areas.Trainer.Models.Courses
         public string? LessonName { get; set; }
         public IFormFile? VideoData { get; set; }
         public IFormFile? Document { get; set; }
+        public Guid SectionId { get; set; }
 
-        [BindProperty]
         public List<TrainerSectionUpdateVM>? Sections { get; set; }
     }
 }

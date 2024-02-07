@@ -5,6 +5,6 @@
         public Guid Id { get; set; }
         public string Name { get; set; } = null!;
         public string? DocumentUri { get; set; }
-        public IFormFile VideoData { get; set; } = null!;
+        public string VideoUri { get; set; } = null!;
     }
 }

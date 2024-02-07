@@ -636,7 +636,6 @@ namespace Wdemy.Persistence.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("DocumentUri")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<TimeSpan>("Duration")
@@ -658,9 +657,9 @@ namespace Wdemy.Persistence.Data.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<byte[]>("VideoData")
+                    b.Property<string>("VideoUri")
                         .IsRequired()
-                        .HasColumnType("varbinary(max)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

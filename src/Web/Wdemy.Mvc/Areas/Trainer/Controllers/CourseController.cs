@@ -74,12 +74,9 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
             {
                 return View(trainerCourseUpdateVM);
             }
-
-            if (!string.IsNullOrEmpty(collection["sectionList"]))
-            {
-                List<TrainerSectionUpdateVM> sectionList = JsonSerializer.Deserialize<List<TrainerSectionUpdateVM>>(collection["sectionList"]);
-                trainerCourseUpdateVM.Sections = sectionList;
-            }
+            
+            List<TrainerSectionUpdateVM> sectionList = JsonSerializer.Deserialize<List<TrainerSectionUpdateVM>>(collection["sectionList"]);
+            trainerCourseUpdateVM.Sections = sectionList;
 
             var courseUpdateDto = _mapper.Map<CourseDto>(trainerCourseUpdateVM);
 
@@ -100,7 +97,15 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
                     await trainerCourseUpdateVM.VideoData.CopyToAsync(videoStream);
                 }
 
-                courseUpdateDto.VideoUri = videoName;
+                courseUpdateDto.Sections.FirstOrDefault(x => x.Id == trainerCourseUpdateVM.SectionId)!.Videos.Add
+                    (
+                        new()
+                        {
+                            Name = trainerCourseUpdateVM.LessonName,
+                            VideoUri = videoName,
+                            SectionId = trainerCourseUpdateVM.SectionId
+                        }
+                    );
             }
 
             if (trainerCourseUpdateVM.Document != null)
@@ -121,7 +126,7 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
                     await trainerCourseUpdateVM.Document.CopyToAsync(fileStream);
                 }
 
-                courseUpdateDto.DocumentUri = fileName;
+                //courseUpdateDto.DocumentUri = fileName;
             }
 
             var result = await _courseService.UpdateAsync(courseUpdateDto);

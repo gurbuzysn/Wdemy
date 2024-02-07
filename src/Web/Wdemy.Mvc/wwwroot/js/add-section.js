@@ -1,12 +1,11 @@
 ﻿let sectionList = [];
+//let sectionInput = ;
 function showSection() {
     let section = document.getElementById("sectionSubmit");
     section.removeAttribute("hidden");
 }
 async function submitSection(courseId) {
     let sectionName = document.getElementById("SectionName").value;
-
-    console.log(courseId);
 
     if (sectionName !== null) {
         let sectionVM = {
@@ -18,7 +17,7 @@ async function submitSection(courseId) {
         
         updateList(sectionVM);
         resetInput(sectionName);
-        document.getElementById("sectionList").value = JSON.stringify(sectionList);
+        document.getElementById('sectionList').value = JSON.stringify(sectionList);
     }
 }
 function updateList(sectionVM) {
@@ -48,18 +47,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function loadSectionData() {
     sectionList = JSON.parse(document.getElementById('sectionData').value);
-
-    console.log(sectionData);
     console.log(sectionList);
+    document.getElementById('sectionList').value = JSON.stringify(sectionList);
+}
 
-    //if (sectionData.length != 0) {
-    //    for (let data of sectionData) {
-    //        let sectionVM = {
-    //            Id: data
-    //            SectionName: data.SectionName,
-    //            CourseId: data.CourseId
-    //        }
-    //        sectionList.push(sectionVM);
-    //    }
-    //}
+function sendId(sectionId) {
+    console.log(sectionId);
+    let sectionIdInput = document.getElementById('sectionId');
+    sectionIdInput.value = sectionId;
+    console.log(sectionIdInput);
 }
