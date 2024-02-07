@@ -12,8 +12,8 @@ using Wdemy.Persistence.Context;
 namespace Wdemy.Persistence.Data.Migrations
 {
     [DbContext(typeof(WdemyDbContext))]
-    [Migration("20240206090721_InitialCreatea")]
-    partial class InitialCreatea
+    [Migration("20240207054737_First")]
+    partial class First
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -639,7 +639,6 @@ namespace Wdemy.Persistence.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("DocumentUri")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<TimeSpan>("Duration")
