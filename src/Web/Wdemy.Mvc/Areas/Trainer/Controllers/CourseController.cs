@@ -8,7 +8,6 @@ using Wdemy.Application.Interfaces.Services;
 using Wdemy.Application.Utilities.Result.Concrete;
 using Wdemy.Domain.Entities;
 using Wdemy.Mvc.Areas.Trainer.Models.Courses;
-using Wdemy.Mvc.Areas.Trainer.Models.Lessons;
 using Wdemy.Mvc.Areas.Trainer.Models.Sections;
 using Wdemy.Mvc.Areas.Trainer.Models.Videos;
 
@@ -57,7 +56,6 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
         public async Task<IActionResult> Update(Guid id)
         {
             var courseResult = await _courseService.GetByIdAsync(id);
-            
 
             if(!courseResult.IsSuccess)
                 return RedirectToAction(nameof(Index));

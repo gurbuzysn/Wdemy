@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Wdemy.Application.Dtos.Lessons;
 using Wdemy.Application.Dtos.Videos;
 using Wdemy.Domain.Entities;
 

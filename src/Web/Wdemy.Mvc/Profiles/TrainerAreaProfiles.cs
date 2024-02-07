@@ -1,11 +1,9 @@
 ﻿using AutoMapper;
 using Wdemy.Application.Dtos.Course;
-using Wdemy.Application.Dtos.Lessons;
 using Wdemy.Application.Dtos.Sections;
 using Wdemy.Application.Dtos.Students;
 using Wdemy.Application.Dtos.Videos;
 using Wdemy.Mvc.Areas.Trainer.Models.Courses;
-using Wdemy.Mvc.Areas.Trainer.Models.Lessons;
 using Wdemy.Mvc.Areas.Trainer.Models.Sections;
 using Wdemy.Mvc.Areas.Trainer.Models.Students;
 using Wdemy.Mvc.Areas.Trainer.Models.Videos;
