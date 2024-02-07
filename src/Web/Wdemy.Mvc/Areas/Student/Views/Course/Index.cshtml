@@ -1,18 +1,27 @@
 ﻿@model List<StudentCourseListVM>
 
-
-foreach (var course in Model)
-{
-<div class="card">
-    <img src="assets/img/card.jpg" class="card-img-top" alt="...">
-    <div class="card-body">
-        <h5 class="card-title">Card with an image on top</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    </div>
-</div>
+@{
+    ViewData["model"] = Model;
 }
-    
 
-   
-   
+<head>
+    <link href="~/css/studentcourselistvm.css" rel="stylesheet" />
+</head>
+
+<body>
+    @foreach (var course in Model)
+    {
+        <div class="card">
+            <img src="~/assets/img/card.jpg" class="card-img-top" alt="Kurs">
+            <div class="card-body">
+                <h5 class="card-title">@course.Name</h5>
+                <p class="card-text">@course.Description</p>
+            </div>
+        </div>
+    }
+</body>
+
+
+
+
 
