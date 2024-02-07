@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Wdemy.Persistence.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreatea : Migration
+    public partial class First : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -374,7 +374,7 @@ namespace Wdemy.Persistence.Data.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     VideoData = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
-                    DocumentUri = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DocumentUri = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Duration = table.Column<TimeSpan>(type: "time", nullable: false),
                     SectionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),

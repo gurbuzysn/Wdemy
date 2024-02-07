@@ -636,7 +636,6 @@ namespace Wdemy.Persistence.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("DocumentUri")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<TimeSpan>("Duration")
