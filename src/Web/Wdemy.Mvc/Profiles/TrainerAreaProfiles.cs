@@ -28,7 +28,6 @@ namespace Wdemy.Mvc.Profiles
             CreateMap<SectionDto, TrainerSectionListVM>()
                 .ForMember(dest => dest.Videos, opt => opt.MapFrom(src => src.Videos));
             CreateMap<SectionDto, TrainerSectionUpdateVM>()
-                .ForMember(dest => dest.Videos, opt => opt.MapFrom(src => src.Videos))
                 .ForMember(dest => dest.SectionName, opt => opt.MapFrom(src => src.Name)).ReverseMap();
 
             CreateMap<VideoDto, TrainerVideoListVM>();

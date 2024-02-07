@@ -657,9 +657,9 @@ namespace Wdemy.Persistence.Data.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<byte[]>("VideoData")
+                    b.Property<string>("VideoUri")
                         .IsRequired()
-                        .HasColumnType("varbinary(max)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

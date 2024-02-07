@@ -34,6 +34,7 @@
                     </div>
 
                     <input id="sectionList" name="sectionList" hidden />
+                    <input asp-for="SectionId" id="sectionId" hidden />
 
                     <div class="row" id="sectionSubmit" hidden>
                         <div class="d-flex gap-3 align-items-center">
@@ -53,7 +54,7 @@
                         {
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="flush-headingOne">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-@sectionItem.Id" aria-expanded="false" aria-controls="flush-collapseOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" onclick="sendId('@sectionItem.Id')" data-bs-target="#flush-collapse-@sectionItem.Id" aria-expanded="false" aria-controls="flush-collapseOne">
                                         @sectionItem.SectionName
                                     </button>
                                 </h2>

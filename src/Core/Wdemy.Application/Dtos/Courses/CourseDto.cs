@@ -20,9 +20,6 @@ namespace Wdemy.Application.Dtos.Course
         public TimeSpan TotalDuration { get; set; }
         public DateTime CreatedDate { get; set; }
         public Guid TrainerId { get; set; }
-        public string? LessonName { get; set; } = null!;
-        public string? VideoUri { get; set; }
-        public string? DocumentUri { get; set; }
 
         public List<SectionDto> Sections { get; set; } = new();
         public  List<StudentDto> Students { get; set; } = new();
