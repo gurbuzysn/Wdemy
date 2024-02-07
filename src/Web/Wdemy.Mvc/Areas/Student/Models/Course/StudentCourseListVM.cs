@@ -1,4 +1,5 @@
 ﻿using Wdemy.Application.Dtos.Sections;
+using Wdemy.Mvc.Areas.Student.Models.Sections;
 
 namespace Wdemy.Mvc.Areas.Student.Models.Course
 {
