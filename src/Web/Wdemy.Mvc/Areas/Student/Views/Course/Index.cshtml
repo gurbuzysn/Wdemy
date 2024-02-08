@@ -18,6 +18,12 @@
             </ol>
         </nav>
     </div>
+
+    <video width="320" height="240" controls>
+        <source src="~/videos/aynur.mp4" type="video/mp4">
+        Tarayıcınız video etiketini desteklemiyor.
+    </video>
+
     @foreach (var course in Model)
     {
         <div class="card">
@@ -27,6 +33,9 @@
                 <p class="card-text">@course.Description</p>
             </div>
         </div>
+
+        
+
     }
 </body>
 
