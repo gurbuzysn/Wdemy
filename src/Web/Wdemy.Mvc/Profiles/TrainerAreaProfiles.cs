@@ -22,6 +22,7 @@ namespace Wdemy.Mvc.Profiles
                 .ForMember(dest => dest.Sections, opt => opt.MapFrom(src => src.Sections));
             CreateMap<TrainerCourseUpdateVM, CourseDto>()
                 .ForMember(dest => dest.Sections, opt => opt.MapFrom(src => src.Sections));
+            CreateMap<TrainerCourseDetailsVM, CourseDto>().ReverseMap();
 
             CreateMap<StudentDto, TrainerStudentListVM>();
 
@@ -29,9 +30,11 @@ namespace Wdemy.Mvc.Profiles
                 .ForMember(dest => dest.Videos, opt => opt.MapFrom(src => src.Videos));
             CreateMap<SectionDto, TrainerSectionUpdateVM>()
                 .ForMember(dest => dest.SectionName, opt => opt.MapFrom(src => src.Name)).ReverseMap();
+            CreateMap<TrainerVideoDetailsVM, SectionDto>().ReverseMap();
 
             CreateMap<VideoDto, TrainerVideoListVM>();
-            CreateMap<VideoDto, TrainerVideoUpdateVM>();
+            CreateMap<VideoDto, TrainerVideoUpdateVM>().ReverseMap();
+            CreateMap<TrainerVideoDetailsVM, VideoDto>().ReverseMap();
         }
     }
 }

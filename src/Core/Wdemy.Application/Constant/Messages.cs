@@ -124,5 +124,7 @@ namespace Wdemy.Application.Constant
         public const string SubtopicNotFound = "Subtopic_Not_Found";
 
         public const string StudentExamsNotFound = "The_Student_Does_Not_Have_Any_Exams";
+
+        public const string VideoNotFound = "Video_Not_Found";
     }
 }

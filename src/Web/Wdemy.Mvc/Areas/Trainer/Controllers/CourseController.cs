@@ -133,5 +133,14 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        public async Task<IActionResult> Details(Guid id)
+        {
+            var course = await _courseService.GetByIdAsync(id);
+
+            var courseVM = _mapper.Map<TrainerCourseDetailsVM>(course);
+
+            return View(courseVM);
+        }
     }
 }

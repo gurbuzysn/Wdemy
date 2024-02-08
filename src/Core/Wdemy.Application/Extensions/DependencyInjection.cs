@@ -16,9 +16,12 @@ namespace Wdemy.Application.Extensions
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
-            services.AddScoped<ICourseService, CourseService>();
-            services.AddScoped<ITrainerService, TrainerService>();
-            services.AddScoped<IStudentService, StudentService>();
+
+                services.AddScoped<ICourseService, CourseService>();
+                services.AddScoped<ITrainerService, TrainerService>();
+                services.AddScoped<IVideoService, VideoService>();
+                services.AddScoped<IStudentService, StudentService>();
+
 
             return services;
         }
