@@ -9,6 +9,7 @@ namespace Wdemy.Mvc.Areas.Trainer.Models.Courses
         public Guid Id { get; set; }
         public string Name { get; set; } = null!;
         public string? Description { get; set; }
+        public DateTime CreatedDate { get; set; }
         public Guid TrainerId { get; set; }
         public string? LessonName { get; set; }
         public IFormFile? VideoData { get; set; }

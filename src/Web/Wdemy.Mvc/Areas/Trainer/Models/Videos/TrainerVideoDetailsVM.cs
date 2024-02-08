@@ -11,6 +11,8 @@
         public DateTime ModifiedDate { get; set; }
         public string VideoUri { get; set; } = null!;
         public TimeSpan Duration { get; set; }
+        public string SectionName { get; set; } = null!;
+        public string CourseName { get; set; } = null!;
         public Guid SectionId { get; set; }
     }
 }

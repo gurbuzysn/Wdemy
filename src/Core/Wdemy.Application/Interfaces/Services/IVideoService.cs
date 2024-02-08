@@ -15,6 +15,6 @@ namespace Wdemy.Application.Interfaces.Services
         Task<IDataResult<List<VideoDto>>> GetAllAsync();
         //Task<IDataResult<VideoDto>> AddAsync(CourseCreateDto courseCreateDto);
         Task<IResult> DeleteAsync(Guid id);
-        Task<IDataResult<VideoDto>> UpdateAsync(VideoDto courseDto);
+        Task<IDataResult<VideoDto>> UpdateAsync(VideoDto videoDto);
     }
 }

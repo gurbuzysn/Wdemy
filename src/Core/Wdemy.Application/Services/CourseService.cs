@@ -76,9 +76,7 @@ namespace Wdemy.Application.Services
         public async Task<IDataResult<CourseDto>> UpdateAsync(CourseDto courseDto)
         {
             var course = _courseRepository.GetByIdAsync(courseDto.Id).Result;
-
-            //var sectionDtoList = _mapper.Map<List<SectionDto>>(course.Sections);
-            //courseDto.Sections.AddRange(sectionDtoList);
+            
 
             if (course == null)
             {
