@@ -21,12 +21,14 @@ namespace Wdemy.Application.Services
         private readonly IMapper _mapper;
         private readonly ICourseRepository _courseRepository;
         private readonly ITrainerService _trainerService;
+        private readonly IStudentService _studentService;
 
-        public CourseService(IMapper mapper, ICourseRepository courseRepository, ITrainerService trainerService)
+        public CourseService(IMapper mapper, ICourseRepository courseRepository, ITrainerService trainerService, IStudentService studentService)
         {
             _mapper = mapper;
             _courseRepository = courseRepository;
             _trainerService = trainerService;
+            _studentService = studentService;
         }
 
         public async Task<IDataResult<CourseDto>> GetByIdAsync(Guid id)
@@ -39,6 +41,37 @@ namespace Wdemy.Application.Services
             return new SuccessDataResult<CourseDto>(_mapper.Map<CourseDto>(course), Messages.FoundSuccess);
 
         }
+
+
+
+
+
+        public async Task<IDataResult<List<CourseDto>>> GetByStudentIdAsync(Guid studentId)
+        {
+           
+            var courses = await _courseRepository.GetAllAsync();
+
+            var student = await _studentService.GetByIdAsync(studentId);
+
+
+            
+
+            var studentCourseList = courses.Select(x => x.Id == studentId).ToList();
+
+
+            //if (studentCourseList.Count == null)
+            //    return new ErrorDataResult<List<CourseDto>>(Messages.CourseNotFound);
+
+            //return new SuccessDataResult<List<CourseDto>>(studentCourseList, Messages.FoundSuccess);
+            return new SuccessDataResult<List<CourseDto>>(_mapper.Map<List<CourseDto>>(courses), Messages.ListedSuccess);
+
+
+        }
+
+
+
+
+
 
         public async Task<IDataResult<CourseDto>> AddAsync(CourseCreateDto courseCreateDto)
         {
@@ -96,5 +129,7 @@ namespace Wdemy.Application.Services
 
             return new SuccessDataResult<CourseDto>(_mapper.Map<CourseDto>(course), Messages.UpdateSuccess);
         }
+
+       
     }
 }
