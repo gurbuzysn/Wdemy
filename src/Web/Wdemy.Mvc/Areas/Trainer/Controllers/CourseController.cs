@@ -103,7 +103,8 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
                         {
                             Name = trainerCourseUpdateVM.LessonName,
                             VideoUri = videoName,
-                            SectionId = trainerCourseUpdateVM.SectionId
+                            SectionId = trainerCourseUpdateVM.SectionId,
+                            
                         }
                     );
             }
