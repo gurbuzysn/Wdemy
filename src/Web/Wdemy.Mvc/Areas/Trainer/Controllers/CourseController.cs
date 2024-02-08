@@ -82,7 +82,7 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
 
             if (trainerCourseUpdateVM.VideoData != null)
             {
-                string videoName = trainerCourseUpdateVM.LessonName + "_" + Guid.NewGuid().ToString();
+                string videoName =Guid.NewGuid().ToString() + ".mp4";
                 string folder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "videos");
 
                 if (!Directory.Exists(folder))
@@ -104,9 +104,7 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
                             Name = trainerCourseUpdateVM.LessonName,
                             VideoUri = videoName,
                             SectionId = trainerCourseUpdateVM.SectionId,
-
                             CreatedBy = trainerCourseUpdateVM.TrainerId
-
                         }
                     );
             }
