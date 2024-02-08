@@ -40,7 +40,6 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
             .AddEntityFrameworkStores<WdemyDbContext>()
             .AddClaimsPrincipalFactory<ApplicationUserClaimsPrincipalFactory>();
 
-
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = new PathString("/Login/Index");
@@ -57,15 +56,14 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.AccessDeniedPath = new PathString("/Login/AccessDenied");
 });
 
-
 builder.Services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
 builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 builder.Services.AddScoped<ITrainerRepository, TrainerRepository>();
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddScoped<ICourseRepository, CourseRepository>();
 builder.Services.AddScoped<IVideoRepository, VideoRepository>();
+builder.Services.AddScoped<ISectionRepository, SectionRepository>();
 builder.Services.AddScoped<IAccountService, AccountService>();
-
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

@@ -74,7 +74,7 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
             {
                 return View(trainerCourseUpdateVM);
             }
-            
+
             List<TrainerSectionUpdateVM> sectionList = JsonSerializer.Deserialize<List<TrainerSectionUpdateVM>>(collection["sectionList"]);
             trainerCourseUpdateVM.Sections = sectionList;
 
@@ -104,7 +104,9 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
                             Name = trainerCourseUpdateVM.LessonName,
                             VideoUri = videoName,
                             SectionId = trainerCourseUpdateVM.SectionId,
-                            
+
+                            CreatedBy = trainerCourseUpdateVM.TrainerId
+
                         }
                     );
             }
