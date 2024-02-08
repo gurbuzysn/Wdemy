@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Wdemy.Application.Dtos.Course;
+using Wdemy.Application.Dtos.Courses;
 using Wdemy.Domain.Entities;
 using Wdemy.Domain.Enums;
 
@@ -29,6 +30,9 @@ namespace Wdemy.Application.Profiles
                 .ForMember(dest => dest.Status, opt => opt.MapFrom(src => Status.Modified))
                 .ForMember(dest => dest.ModifiedDate, opt => opt.MapFrom(src => DateTime.Now))
                 .ForMember(dest => dest.ModifiedBy, opt => opt.MapFrom(src => src.TrainerId));
+
+
+           
         }
     }
 }

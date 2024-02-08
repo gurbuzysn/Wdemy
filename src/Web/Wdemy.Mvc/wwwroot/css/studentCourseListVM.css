@@ -1,0 +1,17 @@
+﻿body{
+    margin: 0;
+    padding: 0;
+    height:100%;
+}
+
+.card{
+    max-width:30%;
+}
+
+.footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    text-align:match-parent;
+}
