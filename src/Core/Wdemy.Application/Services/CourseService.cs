@@ -21,12 +21,14 @@ namespace Wdemy.Application.Services
         private readonly IMapper _mapper;
         private readonly ICourseRepository _courseRepository;
         private readonly ITrainerService _trainerService;
+        private readonly IStudentService _studentService;
 
-        public CourseService(IMapper mapper, ICourseRepository courseRepository, ITrainerService trainerService)
+        public CourseService(IMapper mapper, ICourseRepository courseRepository, ITrainerService trainerService, IStudentService studentService)
         {
             _mapper = mapper;
             _courseRepository = courseRepository;
             _trainerService = trainerService;
+            _studentService = studentService;
         }
 
         public async Task<IDataResult<CourseDto>> GetByIdAsync(Guid id)
@@ -39,7 +41,6 @@ namespace Wdemy.Application.Services
             return new SuccessDataResult<CourseDto>(_mapper.Map<CourseDto>(course), Messages.FoundSuccess);
 
         }
-
         public async Task<IDataResult<CourseDto>> AddAsync(CourseCreateDto courseCreateDto)
         {
             var course = _mapper.Map<Course>(courseCreateDto);  
@@ -96,5 +97,7 @@ namespace Wdemy.Application.Services
 
             return new SuccessDataResult<CourseDto>(_mapper.Map<CourseDto>(course), Messages.UpdateSuccess);
         }
+
+       
     }
 }
