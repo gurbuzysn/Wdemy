@@ -479,6 +479,54 @@ namespace Wdemy.Persistence.Data.Migrations
                     b.ToTable("Students");
                 });
 
+            modelBuilder.Entity("Wdemy.Domain.Entities.StudentCourse", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CourseId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("DeletedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsFinished")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("ProgressRate")
+                        .HasColumnType("float");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("StudentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("StudentsCourses");
+                });
+
             modelBuilder.Entity("Wdemy.Domain.Entities.SubCategory", b =>
                 {
                     b.Property<Guid>("Id")
@@ -746,6 +794,25 @@ namespace Wdemy.Persistence.Data.Migrations
                     b.HasOne("Wdemy.Domain.Entities.Course", null)
                         .WithMany("Students")
                         .HasForeignKey("CourseId");
+                });
+
+            modelBuilder.Entity("Wdemy.Domain.Entities.StudentCourse", b =>
+                {
+                    b.HasOne("Wdemy.Domain.Entities.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Wdemy.Domain.Entities.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+
+                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("Wdemy.Domain.Entities.SubCategory", b =>
