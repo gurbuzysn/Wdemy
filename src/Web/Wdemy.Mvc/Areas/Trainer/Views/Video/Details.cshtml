@@ -3,35 +3,26 @@
     ViewData["Title"] = @Model.Name;
 }
 
-<div class="card">
+<div class="card mt-5">
     <div class="card-body">
-        <div class="row">
-            <div class="col-2">
-                <span class="card-title fs-5 text-danger-emphasis">Videonun Kursu : </span>
-            </div>
-            <div class="col-2">
-                <span>@Model.CourseName</span>
+        <div id="top-side" class="p-5">
+            <div class="course">Kurs : <span class="course-name">@Model.CourseName</span></div>
+            <div class="section-title">Bölüm : <span class="section-name">@Model.SectionName</span></div>
+        </div>
+        <div class="video-content">
+            <video class="course-video" controls>
+                <source src="~/videos/@Model.VideoUri" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="video-bottom">
+                <div>
+                    <span class="video-name">@Model.Name</span>
+                </div>
+                <div>
+                    <span class="created-date-text">Eklenme Tarihi : </span>
+                    <span class="created-date">@Model.CreatedDate.ToShortDateString()</span>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-2">
-                <span class="card-title fs-5 text-danger-emphasis">Videonun Bölümü : </span>
-            </div>
-            <div class="col-2">
-                <span>@Model.SectionName</span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-2">
-                <span class="card-title fs-5 text-danger-emphasis">Video Adı : </span>
-            </div>
-            <div class="col-2">
-                <span>@Model.Name</span>
-            </div>
-        </div>
-        <video width="640" height="360" controls>
-            <source src="~/videos/@Model.VideoUri" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
     </div>
 </div>
