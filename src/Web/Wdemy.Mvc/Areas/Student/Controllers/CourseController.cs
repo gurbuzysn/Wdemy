@@ -18,13 +18,19 @@ namespace Wdemy.Mvc.Areas.Student.Controllers
             _mapper = mapper;
         }
 
-        public async Task<IActionResult> Index()
-        {
-            var courses = await _courseService.GetAllAsync();
-            var courseListVm = _mapper.Map<List<StudentCourseListVM>>(courses.Data);
+        //public async Task<IActionResult> Index()
+        //{
+        //    var userId = Guid.Parse(UserId);
+        //    var student = await _studentService.GetByIdAsync(userId);
+
+        //    var studentCourses = 
+
+
+        //    var courses = await _courseService.GetAllAsync();
+        //    var courseListVm = _mapper.Map<List<StudentCourseListVM>>(courses.Data);
 
            
-            return View(courseListVm);
-        }
+        //    return View(courseListVm);
+        //}
     }
 }
