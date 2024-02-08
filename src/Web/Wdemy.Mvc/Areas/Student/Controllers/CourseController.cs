@@ -10,12 +10,14 @@ namespace Wdemy.Mvc.Areas.Student.Controllers
         private readonly ICourseService _courseService;
         private readonly IStudentService _studentService;
         private readonly IMapper _mapper;
+        private readonly IStudentCourseService _studentCourseService;
 
-        public CourseController(ICourseService courseService, IStudentService studentService, IMapper mapper)
+        public CourseController(ICourseService courseService, IStudentService studentService, IMapper mapper, IStudentCourseService studentCourseService)
         {
             _courseService = courseService;
             _studentService = studentService;
             _mapper = mapper;
+            _studentCourseService = studentCourseService;
         }
 
         public async Task<IActionResult> Index()

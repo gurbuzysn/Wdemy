@@ -41,38 +41,6 @@ namespace Wdemy.Application.Services
             return new SuccessDataResult<CourseDto>(_mapper.Map<CourseDto>(course), Messages.FoundSuccess);
 
         }
-
-
-
-
-
-        public async Task<IDataResult<List<CourseDto>>> GetByStudentIdAsync(Guid studentId)
-        {
-           
-            var courses = await _courseRepository.GetAllAsync();
-
-            var student = await _studentService.GetByIdAsync(studentId);
-
-
-            
-
-            var studentCourseList = courses.Select(x => x.Id == studentId).ToList();
-
-
-            //if (studentCourseList.Count == null)
-            //    return new ErrorDataResult<List<CourseDto>>(Messages.CourseNotFound);
-
-            //return new SuccessDataResult<List<CourseDto>>(studentCourseList, Messages.FoundSuccess);
-            return new SuccessDataResult<List<CourseDto>>(_mapper.Map<List<CourseDto>>(courses), Messages.ListedSuccess);
-
-
-        }
-
-
-
-
-
-
         public async Task<IDataResult<CourseDto>> AddAsync(CourseCreateDto courseCreateDto)
         {
             var course = _mapper.Map<Course>(courseCreateDto);  
