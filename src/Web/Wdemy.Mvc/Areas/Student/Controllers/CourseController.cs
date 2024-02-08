@@ -20,17 +20,9 @@ namespace Wdemy.Mvc.Areas.Student.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var userId = Guid.Parse(UserId);
-
-            //var student = await _studentService.GetByIdAsync(userId);
-            //Studenten kurslarına göre veri çekilecek
-
-
-            //Burada tüm kurslar getirilip işlem yapıldı.
             var courses = await _courseService.GetAllAsync();
-
             var courseListVm = _mapper.Map<List<StudentCourseListVM>>(courses.Data);
-            
+
            
             return View(courseListVm);
         }
