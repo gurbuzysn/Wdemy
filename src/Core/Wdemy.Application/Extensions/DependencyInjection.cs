@@ -10,19 +10,21 @@ using Wdemy.Application.Services;
 
 namespace Wdemy.Application.Extensions
 {
-        public static class DependencyInjection
+    public static class DependencyInjection
+    {
+        public static IServiceCollection AddBusinessServices(this IServiceCollection services)
         {
-            public static IServiceCollection AddBusinessServices(this IServiceCollection services)
-            {
-                services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
 
                 services.AddScoped<ICourseService, CourseService>();
                 services.AddScoped<ITrainerService, TrainerService>();
                 services.AddScoped<IVideoService, VideoService>();
-                services.AddScoped<ISectionService, SectionService>();
+                services.AddScoped<IStudentService, StudentService>();
+
 
             return services;
-            }
         }
-    
+    }
+
 }

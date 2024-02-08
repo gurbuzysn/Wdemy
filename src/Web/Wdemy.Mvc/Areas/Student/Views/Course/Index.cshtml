@@ -1,0 +1,36 @@
+﻿@model List<StudentCourseListVM>
+
+@{
+    ViewData["model"] = Model;
+}
+
+<head>
+    <link href="~/css/studentcourselistvm.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="pagetitle">
+        <h1>Kurslarım</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active">Dashboard</li>
+            </ol>
+        </nav>
+    </div>
+    @foreach (var course in Model)
+    {
+        <div class="card">
+            <img src="~/assets/img/card.jpg" class="card-img-top" alt="Kurs">
+            <div class="card-body">
+                <h5 class="card-title">@course.Name</h5>
+                <p class="card-text">@course.Description</p>
+            </div>
+        </div>
+    }
+</body>
+
+
+
+
+
