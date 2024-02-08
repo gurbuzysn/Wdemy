@@ -83,7 +83,7 @@
                                 @foreach (var video in sectionItem.Videos)
                                 {
                                     <div id="flush-collapse-@sectionItem.Id" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                                        <div class="accordion-body">@video.Name</div>
+                                        <div class="accordion-body"><a asp-controller="Video" asp-action="Details" asp-route-id="@video.Id">@video.Name</a></div>
                                     </div>
                                 }
                             </div>

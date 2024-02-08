@@ -18,6 +18,7 @@ namespace Wdemy.Application.Extensions
 
                 services.AddScoped<ICourseService, CourseService>();
                 services.AddScoped<ITrainerService, TrainerService>();
+                services.AddScoped<IVideoService, VideoService>();
 
             return services;
             }
