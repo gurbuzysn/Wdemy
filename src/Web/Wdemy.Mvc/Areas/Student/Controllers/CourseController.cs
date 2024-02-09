@@ -25,13 +25,21 @@ namespace Wdemy.Mvc.Areas.Student.Controllers
             var userId = Guid.Parse(UserId);
             var student = await _studentService.GetByIdAsync(userId);
 
-            var studentCourses = await _courseService.GetByStudentIdAsync(student.Data.Id);
+            var allStudentCourses = await _studentCourseService.GetAllAsync();
+            var studentCourses = allStudentCourses.Data.Where(x => x.StudentId == userId).Select(x => x.Course).ToList();
+            var courses = _mapper.Map<List<StudentCourseListVM>>(studentCourses);
 
-
-            //var courseListVm = _mapper.Map<List<StudentCourseListVM>>(courses.Data);
-
-
-            return View();
+            return View(courses);
         }
+
+        public async Task<IActionResult> Details(Guid id)
+        {
+            var course = await _courseService.GetByIdAsync(id);
+
+            var courseVM = _mapper.Map<StudentCourseDetailVM>(course.Data);
+            
+            return View(courseVM);
+        }
+
     }
 }

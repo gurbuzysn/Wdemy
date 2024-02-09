@@ -9,6 +9,7 @@ namespace Wdemy.Application.Constant
     public class Messages
     {
         public const string CourseNotFound = "Kurs Bulunamadı";
+        public const string StudentCourseNotFound = "Öğrenciye tanımlı kurs bulunamadı";
 
         public const string ListedSuccess = "Listed_Success";
         public const string ListReceived = "List_Received";
