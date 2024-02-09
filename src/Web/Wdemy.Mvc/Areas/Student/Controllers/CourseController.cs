@@ -32,11 +32,14 @@ namespace Wdemy.Mvc.Areas.Student.Controllers
             return View(courses);
         }
 
-        public IActionResult Details(Guid id)
+        public async Task<IActionResult> Details(Guid id)
         {
-            return View();
-        }
+            var course = await _courseService.GetByIdAsync(id);
 
+            var courseVM = _mapper.Map<StudentCourseDetailVM>(course.Data);
+            
+            return View(courseVM);
+        }
 
     }
 }

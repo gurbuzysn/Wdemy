@@ -1,0 +1,21 @@
+﻿@model StudentCourseDetailVM
+
+@{
+    ViewBag.Title = "Details Pages";
+}
+
+<div class="pagetitle">
+    <h1>Kurs Detayları</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Kurslarım</a></li>
+            <li class="breadcrumb-item active">Detaylar</li>
+        </ol>
+    </nav>
+</div>
+
+<div>
+    <h1>@Model.Name</h1>
+    <h1>@Model.Description</h1>
+</div>
+
