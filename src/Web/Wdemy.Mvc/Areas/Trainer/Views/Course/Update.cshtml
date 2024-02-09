@@ -25,7 +25,6 @@
             <div class="col-md-12" hidden>
                 <input asp-for="TrainerId" type="text" class="form-control" placeholder="Kurs Adı">
             </div>
-            <input value="@ViewBag.Sections" id="sectionData" hidden />
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
@@ -50,44 +49,71 @@
                         </div>
                     </div>
                     <div class="accordion accordion-flush" id="accordionFlushExample">
-                        @foreach (var sectionItem in Model.Sections)
+                        @if (Model.Sections != null)
                         {
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="flush-headingOne">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" onclick="sendId('@sectionItem.Id')" data-bs-target="#flush-collapse-@sectionItem.Id" aria-expanded="false" aria-controls="flush-collapseOne">
-                                        @sectionItem.SectionName
-                                    </button>
-                                </h2>
-                                <div id="flush-collapse-@sectionItem.Id" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-floating">
-                                                    <input asp-for="LessonName" type="text" class="form-control" placeholder="Ders Adı">
-                                                    <label asp-for="LessonName">Ders Adı</label>
-                                                    <span asp-validation-for="LessonName" class="text-danger"></span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="row">
-                                                    <label asp-for="VideoData" class="col-sm-2 col-form-label">Video Yükle</label>
-                                                    <div class="col">
-                                                        <input asp-for="VideoData" class="form-control" type="file">
+                            @for (int i = 0; i < Model.Sections.Count; i++)
+                            {
+                                <input type="hidden" asp-for="Sections[i].Id" />
+                                <input type="hidden" asp-for="Sections[i].SectionName" />
+                                <input type="hidden" asp-for="Sections[i].CourseId" />
+
+                                @for (int j = 0; j < Model.Sections[i].Videos.Count; j++)
+                                {
+                                    <input type="hidden" asp-for="Sections[i].Videos[j].Id" />
+                                    <input type="hidden" asp-for="Sections[i].Videos[j].Name" />
+                                    <input type="hidden" asp-for="Sections[i].Videos[j].DocumentUri" />
+                                    <input type="hidden" asp-for="Sections[i].Videos[j].CreatedBy" />
+                                    <input type="hidden" asp-for="Sections[i].Videos[j].CreatedDate" />
+                                    <input type="hidden" asp-for="Sections[i].Videos[j].ModifiedBy" />
+                                    <input type="hidden" asp-for="Sections[i].Videos[j].ModifiedDate" />
+                                    <input type="hidden" asp-for="Sections[i].Videos[j].VideoUri" />
+                                    <input type="hidden" asp-for="Sections[i].Videos[j].Duration" />
+                                    <input type="hidden" asp-for="Sections[i].Videos[j].SectionId" />
+                                }
+                            }
+
+                            @for (int z = 0; z < Model.Sections.Count; z++)
+                            {
+                               
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-headingOne">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" onclick="sendId('@Model.Sections[z].Id')" data-bs-target="#flush-collapse-@Model.Sections[z].Id" aria-expanded="false" aria-controls="flush-collapseOne">
+                                            @Model.Sections[z].SectionName
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapse-@Model.Sections[z].Id" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating">
+                                                        <input asp-for="Sections[z].LessonName" type="text" class="form-control" placeholder="Ders Adı">
+                                                        <label asp-for="Sections[z].LessonName">Ders Adı</label>
+                                                        <span asp-validation-for="Sections[z].LessonName" class="text-danger"></span>
                                                     </div>
                                                 </div>
-                                                <span asp-validation-for="VideoData" class="text-danger"></span>
+                                                <div class="col-md-6">
+                                                    <div class="row">
+                                                        <label asp-for="Sections[z].VideoData" class="col-sm-2 col-form-label">Video Yükle</label>
+                                                        <div class="col">
+                                                            <input asp-for="Sections[z].VideoData" class="form-control" type="file">
+                                                        </div>
+                                                    </div>
+                                                    <span asp-validation-for="Sections[z].VideoData" class="text-danger"></span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    @foreach (var video in Model.Sections[z].Videos)
+                                    {
+
+                                        <div id="flush-collapse-@Model.Sections[z].Id" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body"><a asp-controller="Video" asp-action="Details" asp-route-id="@video.Id">@video.Name</a></div>
+                                        </div>
+                                    }
                                 </div>
-                                @foreach (var video in sectionItem.Videos)
-                                {
-                                    <div id="flush-collapse-@sectionItem.Id" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                                        <div class="accordion-body"><a asp-controller="Video" asp-action="Details" asp-route-id="@video.Id">@video.Name</a></div>
-                                    </div>
-                                }
-                            </div>
+                            }
                         }
+                        
                     </div>
                 </div>
             </div>

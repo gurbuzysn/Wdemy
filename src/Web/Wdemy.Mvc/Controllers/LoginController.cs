@@ -19,6 +19,12 @@ namespace Wdemy.Mvc.Controllers
             if (TempData["Login"] != null)
             {
                 var user = await _userManager.GetUserAsync(User);
+
+                if(user == null)
+                {
+                    return View();
+                }
+
                 var userRole = await _userManager.GetRolesAsync(user);
                 Json(new { success = true });
                 return RedirectToAction("Index", "Home", new { Area = userRole[0].ToString() });
