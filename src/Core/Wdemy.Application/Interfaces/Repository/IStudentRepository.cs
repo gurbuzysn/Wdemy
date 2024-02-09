@@ -7,7 +7,7 @@ using Wdemy.Domain.Entities;
 
 namespace Wdemy.Application.Interfaces.Repository
 {
-    public interface IStudentRepository
+    public interface IStudentRepository : IRepository<Student>
     {
         Task<Student?> GetByIdentityAsync(Guid identityId);
 

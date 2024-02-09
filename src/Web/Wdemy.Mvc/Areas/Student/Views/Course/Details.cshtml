@@ -4,18 +4,26 @@
     ViewBag.Title = "Details Pages";
 }
 
-<div class="pagetitle">
-    <h1>Kurs Detayları</h1>
-    <nav>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Kurslarım</a></li>
-            <li class="breadcrumb-item active">Detaylar</li>
-        </ol>
-    </nav>
-</div>
-
-<div>
-    <h1>@Model.Name</h1>
-    <h1>@Model.Description</h1>
-</div>
-
+@* <div class="card mt-5">
+    <div class="card-body">
+        <div id="top-side" class="p-5">
+            <div class="course">Kurs : <span class="course-name">@Model.Name</span></div>
+            <div class="section-title">Bölüm : <span class="section-name">@Model.Sections.</span></div>
+        </div>
+        <div class="video-content">
+            <video class="course-video" controls>
+                <source src="~/videos/@Model.VideoUri" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="video-bottom">
+                <div>
+                    <span class="video-name">@Model.Name</span>
+                </div>
+                <div>
+                    <span class="created-date-text">Eklenme Tarihi : </span>
+                    <span class="created-date">@Model.CreatedDate.ToShortDateString()</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> *@

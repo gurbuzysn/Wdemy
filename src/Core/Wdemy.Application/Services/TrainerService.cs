@@ -36,5 +36,17 @@ namespace Wdemy.Application.Services
 
             return new SuccessDataResult<Trainer>(trainer, Messages.FoundSuccess);
         }
+
+        public async Task<IDataResult<List<TrainerDto>>> GetAllAsync()
+        {
+            var allTrainers = await _trainerRepository.GetAllAsync();
+
+            if (allTrainers == null)
+                return new ErrorDataResult<List<TrainerDto>>();
+
+            return new SuccessDataResult<List<TrainerDto>>(_mapper.Map<List<TrainerDto>>(allTrainers), Messages.FoundSuccess);
+        }
+
+
     }
 }
