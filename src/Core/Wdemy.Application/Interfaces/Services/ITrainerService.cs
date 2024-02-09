@@ -13,6 +13,6 @@ namespace Wdemy.Application.Interfaces.Services
     public interface ITrainerService
     {
         Task<IDataResult<Trainer>> GetByIdAsync(Guid id);
-
+        Task<IDataResult<List<TrainerDto>>> GetAllAsync();
     }
 }

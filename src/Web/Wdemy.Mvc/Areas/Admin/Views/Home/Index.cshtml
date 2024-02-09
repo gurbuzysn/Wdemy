@@ -1,15 +1,9 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-
-<div class="pagetitle">
-    <h1>Dashboard</h1>
+﻿<div class="pagetitle">
+    <h1>Yönetim Paneli</h1>
     <nav>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active">Dashboard</li>
+            <li class="breadcrumb-item"><a href="index.html">Ana Sayfa</a></li>
+            <li class="breadcrumb-item active">Yönetim Paneli</li>
         </ol>
     </nav>
 </div><!-- End Page Title -->
@@ -39,15 +33,14 @@
                         </div>
 
                         <div class="card-body">
-                            <h5 class="card-title">Sales <span>| Today</span></h5>
+                            <h5 class="card-title">Toplam Eğitmen Sayısı <span></span></h5>
 
                             <div class="d-flex align-items-center">
                                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                     <i class="bi bi-cart"></i>
                                 </div>
                                 <div class="ps-3">
-                                    <h6>145</h6>
-                                    <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                                    <h6>@ViewData["TrainerCount"]</h6>
 
                                 </div>
                             </div>
@@ -73,15 +66,15 @@
                         </div>
 
                         <div class="card-body">
-                            <h5 class="card-title">Revenue <span>| This Month</span></h5>
+                            <h5 class="card-title">Toplam Kursiyer Sayısı <span></span></h5>
 
                             <div class="d-flex align-items-center">
                                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                     <i class="bi bi-currency-dollar"></i>
                                 </div>
                                 <div class="ps-3">
-                                    <h6>$3,264</h6>
-                                    <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                                    <h6>@ViewData["StudentCount"]</h6>
+                                    
 
                                 </div>
                             </div>
@@ -108,16 +101,14 @@
                         </div>
 
                         <div class="card-body">
-                            <h5 class="card-title">Customers <span>| This Year</span></h5>
+                            <h5 class="card-title">Toplam Kurs Sayısı <span></span></h5>
 
                             <div class="d-flex align-items-center">
                                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                     <i class="bi bi-people"></i>
                                 </div>
                                 <div class="ps-3">
-                                    <h6>1244</h6>
-                                    <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
-
+                                    <h6>@ViewData["CourseCount"]</h6>
                                 </div>
                             </div>
 
@@ -135,9 +126,9 @@
                             <div class="card">
                                 <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-                                    <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                                    <h2>Kevin Anderson</h2>
-                                    <h3>Web Designer</h3>
+                                    <img src="~/images/mesutHoca.jpg" alt="Profile" class="rounded-circle">
+                                    <h2></h2>
+                                    <h3>Yönetici</h3>
                                     <div class="social-links mt-2">
                                         <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
                                         <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -158,44 +149,46 @@
                                     <div class="tab-content pt-2">
 
                                         <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                                            <h5 class="card-title">About</h5>
-                                            <p class="small fst-italic">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</p>
+                                            <h5 class="card-title">Hakkında</h5>
+                                            <p class="small fst-italic">
+                                                Hibe desteği sağlamak için yerel ve AB hibe platformlarını izleme konusunda deneyim sahibiyim. Proje başvurularının tamamını, idari prosedürlerden belgeleme hazırlığına kadar yönetme konusunda uzmanlaşmış bulunmaktayım...
+                                            </p>
 
-                                            <h5 class="card-title">Profile Details</h5>
+                                            <h5 class="card-title">Profil Detayları</h5>
 
                                             <div class="row">
-                                                <div class="col-lg-3 col-md-4 label ">Full Name</div>
-                                                <div class="col-lg-9 col-md-8">Kevin Anderson</div>
+                                                <div class="col-lg-3 col-md-4 label ">Adı Soyadı</div>
+                                                <div class="col-lg-9 col-md-8">Mesut Kılıç</div>
                                             </div>
 
                                             <div class="row">
-                                                <div class="col-lg-3 col-md-4 label">Company</div>
-                                                <div class="col-lg-9 col-md-8">Lueilwitz, Wisoky and Leuschke</div>
+                                                <div class="col-lg-3 col-md-4 label">Şirket</div>
+                                                <div class="col-lg-9 col-md-8">Tureb</div>
                                             </div>
 
                                             <div class="row">
-                                                <div class="col-lg-3 col-md-4 label">Job</div>
-                                                <div class="col-lg-9 col-md-8">Web Designer</div>
+                                                <div class="col-lg-3 col-md-4 label">Unvan</div>
+                                                <div class="col-lg-9 col-md-8">Yönetici</div>
                                             </div>
 
                                             <div class="row">
-                                                <div class="col-lg-3 col-md-4 label">Country</div>
-                                                <div class="col-lg-9 col-md-8">USA</div>
+                                                <div class="col-lg-3 col-md-4 label">Ülke</div>
+                                                <div class="col-lg-9 col-md-8">Türkiye</div>
                                             </div>
 
                                             <div class="row">
-                                                <div class="col-lg-3 col-md-4 label">Address</div>
-                                                <div class="col-lg-9 col-md-8">A108 Adam Street, New York, NY 535022</div>
+                                                <div class="col-lg-3 col-md-4 label">Adres</div>
+                                                <div class="col-lg-9 col-md-8">Çankaya / Ankara</div>
                                             </div>
 
                                             <div class="row">
-                                                <div class="col-lg-3 col-md-4 label">Phone</div>
-                                                <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                                                <div class="col-lg-3 col-md-4 label">Telefon</div>
+                                                <div class="col-lg-9 col-md-8">+90 (555) 555 55 55</div>
                                             </div>
 
                                             <div class="row">
                                                 <div class="col-lg-3 col-md-4 label">Email</div>
-                                                <div class="col-lg-9 col-md-8">k.anderson@example.com</div>
+                                                <div class="col-lg-9 col-md-8">mesutkilic@tureb.com</div>
                                             </div>
 
                                         </div>
@@ -216,7 +209,7 @@
                 <div class="col-12">
                     <div class="card recent-sales overflow-auto">
 
-                        <div class="filter">
+                        @* <div class="filter">
                             <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                                 <li class="dropdown-header text-start">
@@ -227,56 +220,42 @@
                                 <li><a class="dropdown-item" href="#">This Month</a></li>
                                 <li><a class="dropdown-item" href="#">This Year</a></li>
                             </ul>
-                        </div>
+                        </div> *@
 
                         <div class="card-body">
-                            <h5 class="card-title">Recent Sales <span>| Today</span></h5>
+                            <h5 class="card-title">Son Yapılan İşlemler</h5>
 
                             <table class="table table-borderless datatable">
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Customer</th>
-                                        <th scope="col">Product</th>
-                                        <th scope="col">Price</th>
-                                        <th scope="col">Status</th>
+                                        <th scope="col">İşlemi Yapan Personel</th>
+                                        <th scope="col">Yapılan İşlem</th>
+                                        <th scope="col">İşlem Zamanı</th>
+                                        <th scope="col">İşlem Durumu</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <th scope="row"><a href="#">#2457</a></th>
-                                        <td>Brandon Jacob</td>
-                                        <td><a href="#" class="text-primary">At praesentium minu</a></td>
-                                        <td>$64</td>
-                                        <td><span class="badge bg-success">Approved</span></td>
+                                        <th scope="row"><a href="#">#1</a></th>
+                                        <td>Mustafa Demir</td>
+                                        <td><a href="#" class="text-primary">Kurs Eklendi</a></td>
+                                        <td>09.02.2024</td>
+                                        <td><span class="badge bg-success">Tamamlandı</span></td>
                                     </tr>
                                     <tr>
-                                        <th scope="row"><a href="#">#2147</a></th>
-                                        <td>Bridie Kessler</td>
-                                        <td><a href="#" class="text-primary">Blanditiis dolor omnis similique</a></td>
-                                        <td>$47</td>
-                                        <td><span class="badge bg-warning">Pending</span></td>
+                                        <th scope="row"><a href="#">#2</a></th>
+                                        <td>Berkan Yıldız</td>
+                                        <td><a href="#" class="text-primary">Rüzgar Türbini kursunu aldı</a></td>
+                                        <td>05.02.2024</td>
+                                        <td><span class="badge bg-warning">Onay Bekliyor</span></td>
                                     </tr>
                                     <tr>
-                                        <th scope="row"><a href="#">#2049</a></th>
-                                        <td>Ashleigh Langosh</td>
-                                        <td><a href="#" class="text-primary">At recusandae consectetur</a></td>
-                                        <td>$147</td>
-                                        <td><span class="badge bg-success">Approved</span></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row"><a href="#">#2644</a></th>
-                                        <td>Angus Grady</td>
-                                        <td><a href="#" class="text-primar">Ut voluptatem id earum et</a></td>
-                                        <td>$67</td>
-                                        <td><span class="badge bg-danger">Rejected</span></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row"><a href="#">#2644</a></th>
-                                        <td>Raheem Lehner</td>
-                                        <td><a href="#" class="text-primary">Sunt similique distinctio</a></td>
-                                        <td>$165</td>
-                                        <td><span class="badge bg-success">Approved</span></td>
+                                        <th scope="row"><a href="#">#3</a></th>
+                                        <td>Ali Kaan Aksoy</td>
+                                        <td><a href="#" class="text-primar">Yeni kursa katılma talebi</a></td>
+                                        <td>03.02.2024</td>
+                                        <td><span class="badge bg-danger">Reddedildi</span></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -296,51 +275,38 @@
             
             <!-- News & Updates Traffic -->
             <div class="card">
-                <div class="filter">
-                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                        <li class="dropdown-header text-start">
-                            <h6>Filter</h6>
-                        </li>
-
-                        <li><a class="dropdown-item" href="#">Today</a></li>
-                        <li><a class="dropdown-item" href="#">This Month</a></li>
-                        <li><a class="dropdown-item" href="#">This Year</a></li>
-                    </ul>
-                </div>
-
                 <div class="card-body pb-0">
-                    <h5 class="card-title">News &amp; Updates <span>| Today</span></h5>
+                    <h5 class="card-title">Haberler ve Duyurular</h5>
 
                     <div class="news">
                         <div class="post-item clearfix">
-                            <img src="assets/img/news-1.jpg" alt="">
-                            <h4><a href="#">Nihil blanditiis at in nihil autem</a></h4>
-                            <p>Sit recusandae non aspernatur laboriosam. Quia enim eligendi sed ut harum...</p>
+                            <img src="~/images/eylemPlani.jpg" alt="">
+                            <h4><a href="#">Rüzgâr Enerjisi Eylem Planı</a></h4>
+                            <p>Avrupa Birliği Komisyonu, Rüzgâr Enerjisi Eylem Planı’nı 24 Ekim 2023 tarihinde açıkladı....</p>
                         </div>
 
                         <div class="post-item clearfix">
-                            <img src="assets/img/news-2.jpg" alt="">
-                            <h4><a href="#">Quidem autem et impedit</a></h4>
-                            <p>Illo nemo neque maiores vitae officiis cum eum turos elan dries werona nande...</p>
+                            <img src="~/images/rüzgarihaleleri.png" alt="">
+                            <h4><a href="#">Deniz Üstü Rüzgar Enerjisi İhaleleri</a></h4>
+                            <p>“Türkiye Rüzgar Enerjisi Birliği (TÜREB) ve SHURA Enerji Dönüşümü Merkezi iş birliğiyle...</p>
                         </div>
 
                         <div class="post-item clearfix">
-                            <img src="assets/img/news-3.jpg" alt="">
-                            <h4><a href="#">Id quia et et ut maxime similique occaecati ut</a></h4>
-                            <p>Fugiat voluptas vero eaque accusantium eos. Consequuntur sed ipsam et totam...</p>
+                            <img src="~/images/faaliyetRaporu.png" alt="">
+                            <h4><a href="#">2023 Faaliyet Raporu</a></h4>
+                            <p>2023 yılında TÜREB olarak gerçekleştirdiğimiz faaliyetlerle sektörümüzdeki değişimi...</p>
                         </div>
 
                         <div class="post-item clearfix">
-                            <img src="assets/img/news-4.jpg" alt="">
-                            <h4><a href="#">Laborum corporis quo dara net para</a></h4>
-                            <p>Qui enim quia optio. Eligendi aut asperiores enim repellendusvel rerum cuder...</p>
+                            <img src="~/images/rüzgarEnerjisiRaporu.jpg" alt="">
+                            <h4><a href="#">Türkiye Rüzgar Enerjisi İstatistik Raporu</a></h4>
+                            <p>2023 yılına ait verileri içeren Türkiye Rüzgar Enerjisi İstatistik Raporu yayınladı....</p>
                         </div>
 
                         <div class="post-item clearfix">
-                            <img src="assets/img/news-5.jpg" alt="">
-                            <h4><a href="#">Et dolores corrupti quae illo quod dolor</a></h4>
-                            <p>Odit ut eveniet modi reiciendis. Atque cupiditate libero beatae dignissimos eius...</p>
+                            <img src="~/images/türebDergi.png" alt="">
+                            <h4><a href="#">TÜREB Dergi 24. Sayı</a></h4>
+                            <p>TÜREB Dergi yayında! Keyifli okumalar dileriz....</p>
                         </div>
 
                     </div><!-- End sidebar recent posts-->
