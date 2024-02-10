@@ -28,7 +28,7 @@
 
     <!-- Template Main CSS File -->
     <link href="~/assets/css/style.css" rel="stylesheet">
-    @* <link href="~/css/site.css" rel="stylesheet" /> *@
+    <link href="~/css/site.css" rel="stylesheet" />
     <!-- =======================================================
     * Template Name: NiceAdmin
     * Updated: Jan 29 2024 with Bootstrap v5.3.2
@@ -39,6 +39,9 @@
 </head>
 
 <body>
+
+    <div id="page-container">
+        <div id="content-wrap">
 
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
@@ -300,9 +303,10 @@
     <main id="main" class="main">
 
         @RenderBody()
-
+    
     </main><!-- End #main -->
     <!-- ======= Footer ======= -->
+        </div>
     <footer id="footer" class="footer">
         <div class="copyright">
             &copy; Copyright <strong><span>Tureb Academy</span></strong>. All Rights Reserved
@@ -325,7 +329,7 @@
     <script src="~/assets/js/main.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
-
+    </div>
 </body>
 
 </html>
