@@ -1,6 +1,6 @@
 ﻿    function openVideo(videoUri){
 
-    console.log(videoTarget)
+    console.log(videoUri)
 
     }
         

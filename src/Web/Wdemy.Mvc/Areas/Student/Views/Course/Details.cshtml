@@ -25,9 +25,6 @@
                 </video>
             </div>
 
-            <video controls="controls">
-                <source src="~/videos/f565ce18-6ce8-4b44-92a0-da43a57aba9f.mp4" type="video/mp4" />
-            </video>
 
 
             <div class="col-md-4">
@@ -52,7 +49,8 @@
                                         <div class="accordion-body">
                                             @foreach (var video in sectionItem.Videos)
                                             {
-                                                <a onclick="openVideo(@video.VideoUri)">@video.VideoUri</a>
+                                                var videoName = video.VideoUri;
+                                                <a onclick="openVideo('@videoName')">@video.VideoUri</a>
                                             }
                                         </div>
                                     </div>
