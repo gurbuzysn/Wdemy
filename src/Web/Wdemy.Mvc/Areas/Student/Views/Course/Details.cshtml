@@ -5,76 +5,50 @@
 }
 
 <section>
-    <div class="container">
-
-
-
+    <div class="container-fluid bg-dange">
 
         <div id="header" class="row mb-5">
             <div class="text-center">
-                <h2>@Model.Name</h2>
+                <h2 class="mb-3">@Model.Name</h2>
                 <h4>@Model.Description</h4>
             </div>
         </div>
-
         <div class="row">
-
             <div class="col-md-8">
-                <video controls width="800" height="600">
-                    <source src="~/videos/f565ce18-6ce8-4b44-92a0-da43a57aba9f.mp4" type="video/mp4" />
-                </video>
+                <video id="videoPlayer" class="w-100" controls></video>
             </div>
-
-
-
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Kursun Bölümleri</h5>
-
                         <!-- Accordion without outline borders -->
                         <div class="accordion accordion-flush" id="accordionFlushExample">
-
-
-
                             @foreach (var sectionItem in Model.Sections)
                             {
                                 <div class="accordion-item">
-                                    <h2 class="accordion-header" id="accordion">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                    <h2 class="accordion-header" id="flush-headingOne">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne-@sectionItem.Id" aria-expanded="false" aria-controls="flush-collapseOne">
                                             @sectionItem.Name
                                         </button>
                                     </h2>
-                                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                    <div id="flush-collapseOne-@sectionItem.Id" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                         <div class="accordion-body">
                                             @foreach (var video in sectionItem.Videos)
                                             {
                                                 var videoName = video.VideoUri;
-                                                <a onclick="openVideo('@videoName')">@video.VideoUri</a>
+                                                <a onclick="openVideo('@videoName')">@video.Name</a>
                                             }
                                         </div>
                                     </div>
                                 </div>
                             }
-                            
-
-
                         </div><!-- End Accordion without outline borders -->
-
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
         </div>
-
     </div>
 </section>
-
 
 @section Scripts{
     <script src="~/js/get-video.js"></script>
