@@ -1,5 +1,4 @@
 ﻿let sectionList = [];
-//let sectionInput = ;
 function showSection() {
     let section = document.getElementById("sectionSubmit");
     section.removeAttribute("hidden");
@@ -41,15 +40,15 @@ function resetInput() {
     document.getElementById("SectionName").value = "";
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    loadSectionData();
-});
+//document.addEventListener('DOMContentLoaded', function () {
+//    loadSectionData();
+//});
 
-function loadSectionData() {
-    sectionList = JSON.parse(document.getElementById('sectionData').value);
-    console.log(sectionList);
-    document.getElementById('sectionList').value = JSON.stringify(sectionList);
-}
+//function loadSectionData() {
+//    sectionList = JSON.parse(document.getElementById('sectionData').value);
+//    console.log(sectionList);
+//    document.getElementById('sectionList').value = JSON.stringify(sectionList);
+//}
 
 function sendId(sectionId) {
     console.log(sectionId);

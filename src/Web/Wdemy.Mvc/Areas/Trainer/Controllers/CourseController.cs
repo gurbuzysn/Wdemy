@@ -61,7 +61,7 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
                 return RedirectToAction(nameof(Index));
 
             var courseUpdateVM = _mapper.Map<TrainerCourseUpdateVM>(courseResult.Data);
-            ViewBag.Sections = JsonSerializer.Serialize(courseUpdateVM.Sections);
+            //ViewBag.Sections = JsonSerializer.Serialize(courseUpdateVM.Sections);
 
             return View(courseUpdateVM);
         }
@@ -72,63 +72,71 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
         {
             if (!ModelState.IsValid)
             {
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
                 return View(trainerCourseUpdateVM);
             }
 
-            List<TrainerSectionUpdateVM> sectionList = JsonSerializer.Deserialize<List<TrainerSectionUpdateVM>>(collection["sectionList"]);
-            trainerCourseUpdateVM.Sections = sectionList;
+            if (!string.IsNullOrEmpty(collection["sectionList"]))
+            {
+                List<TrainerSectionUpdateVM> sectionList = JsonSerializer.Deserialize<List<TrainerSectionUpdateVM>>(collection["sectionList"]);
+                trainerCourseUpdateVM.Sections.AddRange(sectionList);
+            }
 
             var courseUpdateDto = _mapper.Map<CourseDto>(trainerCourseUpdateVM);
 
-            if (trainerCourseUpdateVM.VideoData != null)
+            foreach (var item in trainerCourseUpdateVM.Sections)
             {
-                string videoName =Guid.NewGuid().ToString() + ".mp4";
-                string folder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "videos");
-
-                if (!Directory.Exists(folder))
+                if (item.VideoData != null)
                 {
-                    Directory.CreateDirectory(folder);
+                    string videoName = Guid.NewGuid().ToString() + ".mp4";
+                    string folder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "videos");
+
+                    if (!Directory.Exists(folder))
+                    {
+                        Directory.CreateDirectory(folder);
+                    }
+
+                    string filePath = Path.Combine(folder, videoName);
+
+                    using (var videoStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await item.VideoData.CopyToAsync(videoStream);
+                    }
+
+                    courseUpdateDto.Sections.FirstOrDefault(x => x.Id == trainerCourseUpdateVM.SectionId)!.Videos.Add
+                        (
+                            new()
+                            {
+                                Name = item.LessonName,
+                                VideoUri = videoName,
+                                SectionId = trainerCourseUpdateVM.SectionId,
+                                CreatedBy = trainerCourseUpdateVM.TrainerId
+                            }
+                        );
                 }
-
-                string filePath = Path.Combine(folder, videoName);
-
-                using (var videoStream = new FileStream(filePath, FileMode.Create))
-                {
-                    await trainerCourseUpdateVM.VideoData.CopyToAsync(videoStream);
-                }
-
-                courseUpdateDto.Sections.FirstOrDefault(x => x.Id == trainerCourseUpdateVM.SectionId)!.Videos.Add
-                    (
-                        new()
-                        {
-                            Name = trainerCourseUpdateVM.LessonName,
-                            VideoUri = videoName,
-                            SectionId = trainerCourseUpdateVM.SectionId,
-                            CreatedBy = trainerCourseUpdateVM.TrainerId
-                        }
-                    );
             }
+            
 
-            if (trainerCourseUpdateVM.Document != null)
-            {
-                string fileName = Guid.NewGuid().ToString();
+            //if (trainerCourseUpdateVM.Document != null)
+            //{
+            //    string fileName = Guid.NewGuid().ToString();
 
-                string folder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "documents");
+            //    string folder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "documents");
 
-                if (!Directory.Exists(folder))
-                {
-                    Directory.CreateDirectory(folder);
-                }
+            //    if (!Directory.Exists(folder))
+            //    {
+            //        Directory.CreateDirectory(folder);
+            //    }
 
-                string filePath = Path.Combine(folder, fileName);
+            //    string filePath = Path.Combine(folder, fileName);
 
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    await trainerCourseUpdateVM.Document.CopyToAsync(fileStream);
-                }
+            //    using (var fileStream = new FileStream(filePath, FileMode.Create))
+            //    {
+            //        await trainerCourseUpdateVM.Document.CopyToAsync(fileStream);
+            //    }
 
-                //courseUpdateDto.DocumentUri = fileName;
-            }
+            //    //courseUpdateDto.DocumentUri = fileName;
+            //}
 
             var result = await _courseService.UpdateAsync(courseUpdateDto);
 

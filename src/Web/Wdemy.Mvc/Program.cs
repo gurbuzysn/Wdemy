@@ -16,7 +16,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<WdemyDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString(WdemyDbContext.ConnectionName));
+    options.UseSqlServer(builder.Configuration.GetConnectionString(WdemyDbContext.ConnectionName),
+        options => options.EnableRetryOnFailure(
+                    10,
+                    TimeSpan.FromSeconds(10),
+                    null));
 });
 
 builder.Services.AddBusinessServices()
