@@ -5,6 +5,10 @@ namespace Wdemy.Mvc.Areas.Trainer.Controllers
 {
     public class HomeController : TrainerBaseController
     {
+        public HomeController()
+        {
+            
+        }
         public IActionResult Index()
         {
             return View();

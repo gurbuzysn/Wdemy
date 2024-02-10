@@ -4,26 +4,81 @@
     ViewBag.Title = "Details Pages";
 }
 
-@* <div class="card mt-5">
-    <div class="card-body">
-        <div id="top-side" class="p-5">
-            <div class="course">Kurs : <span class="course-name">@Model.Name</span></div>
-            <div class="section-title">Bölüm : <span class="section-name">@Model.Sections.</span></div>
-        </div>
-        <div class="video-content">
-            <video class="course-video" controls>
-                <source src="~/videos/@Model.VideoUri" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <div class="video-bottom">
-                <div>
-                    <span class="video-name">@Model.Name</span>
-                </div>
-                <div>
-                    <span class="created-date-text">Eklenme Tarihi : </span>
-                    <span class="created-date">@Model.CreatedDate.ToShortDateString()</span>
-                </div>
+<section>
+    <div class="container">
+
+
+
+
+        <div id="header" class="row mb-5">
+            <div class="text-center">
+                <h2>@Model.Name</h2>
+                <h4>@Model.Description</h4>
             </div>
         </div>
+
+        <div class="row">
+
+            <div class="col-md-8">
+                <video controls width="800" height="600">
+                    <source src="~/videos/" type="video/mp4" />
+                </video>
+            </div>
+
+            
+
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Kursun Bölümleri</h5>
+
+                        <!-- Accordion without outline borders -->
+                        <div class="accordion accordion-flush" id="accordionFlushExample">
+
+
+
+                            @foreach (var sectionItem in Model.Sections)
+                            {
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="accordion">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                            @sectionItem.Name
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            @foreach (var video in sectionItem.Videos)
+                                            {
+                                                <a onclick="openVideo(@video.VideoUri)">@video.VideoUri</a>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            
+
+
+                        </div><!-- End Accordion without outline borders -->
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+        </div>
+
     </div>
-</div> *@
+</section>
+
+
+@section Scripts{
+    <script src="~/js/get-video.js"></script>
+}
+
+
+
