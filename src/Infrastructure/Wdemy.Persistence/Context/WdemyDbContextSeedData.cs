@@ -15,7 +15,7 @@ namespace Wdemy.Persistence.Context
     {
         public async static Task SeedAsync(WdemyDbContext db)
         {
-           // await db.Database.MigrateAsync();
+           await db.Database.MigrateAsync();
 
             if (await db.Admins.AnyAsync() || await db.Trainers.AnyAsync() || await db.Students.AnyAsync() || await db.Roles.AnyAsync()) return;
 

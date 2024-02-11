@@ -1,3 +1,9 @@
-﻿#videoPlayer{
-   max-height:800px;
+﻿#videoLink{
+    cursor: pointer;
+
 }
+
+#videoLink:hover{
+   background-color: #d1d7dc;
+}
+
