@@ -22,7 +22,7 @@ builder.Services.AddDbContext<WdemyDbContext>(options =>
                     TimeSpan.FromSeconds(10),
                     null));
 });
-
+ 
 builder.Services.AddBusinessServices()
                 .AddMvcServices();
 
